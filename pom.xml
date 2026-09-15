@@ -8,6 +8,6 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>26</maven.compiler.release>
-        <exec.mainClass>css123proj.salamatminumultoangpapelko.SalamatMinumultoAngPapelKo</exec.mainClass>
+        <exec.mainClass>css123proj.salamatminumultoangpapelko.GameFrame</exec.mainClass>
     </properties>
 </project>
