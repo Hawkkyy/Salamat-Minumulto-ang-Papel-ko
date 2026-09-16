@@ -5,6 +5,8 @@
 package css123proj.salamatminumultoangpapelko;
 
 
+    import css123proj.salamatminumultoangpapelko.Panels.OpeningCutscene;
+
     import java.awt.*;
     import javax.swing.*;
     
@@ -13,13 +15,26 @@ public class GameFrame extends javax.swing.JFrame {
     
 
     public GameFrame() {
-        JPanel panel = new JPanel();
         
-        add(panel);
+        CardLayout showPanel = new CardLayout();
+        JPanel screenBox = new JPanel(showPanel);
         
+        
+        
+        OpeningCutscene oPanel = new OpeningCutscene();
+        
+        screenBox.add(oPanel, "Opening Cutscene");
+        
+        showPanel.show(screenBox, "Opening Cutscene");
+        
+        add(screenBox);
         
         setExtendedState(Frame.MAXIMIZED_BOTH);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
+        
+        
+        
     }
 
    
