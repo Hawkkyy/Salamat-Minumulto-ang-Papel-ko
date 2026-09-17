@@ -9,24 +9,33 @@ package css123proj.salamatminumultoangpapelko.Panels;
     import java.awt.*;
     import java.awt.event.*;
     import java.awt.event.ActionEvent;
+    import java.awt.event.ActionListener;
     import java.net.URL;
+    import java.util.function.Consumer;
 
 public class OpeningCutscene extends javax.swing.JPanel {
 
+        private Consumer<String> goTo;
         private int i = 1;
     
-    public OpeningCutscene() {
+    public OpeningCutscene(Consumer<String> goTo) {
+        
+        this.goTo = goTo;
+        
         
         setLayout(new BorderLayout());
 
         JButton next = new JButton(">");
         JButton prev = new JButton("<");
+        JButton confirm = new JButton("Confirm");
         
         CardLayout showScene = new CardLayout();
         JPanel sceneBox = new JPanel(showScene);
         
         JPanel scene1 = new JPanel();
         JPanel scene2 = new JPanel();
+        
+        scene2.add(confirm);
         
         JPanel controlBox = new JPanel(new FlowLayout());
         
@@ -41,8 +50,8 @@ public class OpeningCutscene extends javax.swing.JPanel {
         URL url2 = getClass().getResource("/Art/Cutscenes/Opening/Cutscene2.png");
         
         if (url1 != null && url2 != null) {
-            Image openComic1 = new ImageIcon(url1).getImage().getScaledInstance(1500, 1000, Image.SCALE_SMOOTH);
-            Image openComic2 = new ImageIcon(url2).getImage().getScaledInstance(1500, 1000, Image.SCALE_SMOOTH);
+            Image openComic1 = new ImageIcon(url1).getImage().getScaledInstance(1200, 1000, Image.SCALE_SMOOTH);
+            Image openComic2 = new ImageIcon(url2).getImage().getScaledInstance(1200, 1000, Image.SCALE_SMOOTH);
 
             JLabel img1 = new JLabel(new ImageIcon(openComic1));
             JLabel img2 = new JLabel(new ImageIcon(openComic2));
@@ -52,6 +61,15 @@ public class OpeningCutscene extends javax.swing.JPanel {
         } else {
         System.err.println("Could not load image resources! Check paths.");
         }
+        
+        confirm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                goTo.accept("Title Screen");
+            }
+        });
+        
         
         next.addActionListener(new ActionListener() {
             @Override
@@ -84,7 +102,6 @@ public class OpeningCutscene extends javax.swing.JPanel {
         add(sceneBox, BorderLayout.CENTER);
         add(controlBox, BorderLayout.SOUTH);
         setVisible(true);
-        
         
     }
         

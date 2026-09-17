@@ -10,4 +10,11 @@
         <maven.compiler.release>26</maven.compiler.release>
         <exec.mainClass>css123proj.salamatminumultoangpapelko.GameFrame</exec.mainClass>
     </properties>
+    <dependencies>
+        <dependency>
+        <groupId>com.google.code.gson</groupId>
+        <artifactId> gson </artifactId>
+        <version> 2.14.0 </version>
+        </dependency>
+    </dependencies>
 </project>

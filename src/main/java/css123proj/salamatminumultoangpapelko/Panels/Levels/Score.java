@@ -4,16 +4,20 @@
  */
 package css123proj.salamatminumultoangpapelko.Panels.Levels;
 
+import java.util.function.Consumer;
+
 /**
  *
  * @author hawk
  */
 public class Score extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Score
-     */
-    public Score() {
+    private Consumer<String> goTo;
+    
+    
+    public Score(Consumer<String> goTo) {
+        
+        this.goTo = goTo;
         initComponents();
     }
 

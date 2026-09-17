@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -16,13 +16,91 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="400" max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="515" max="-2" attributes="0"/>
+              <Component id="lvl1Btn" min="-2" pref="96" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="lvl2Btn" min="-2" pref="100" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="lvl3Btn" min="-2" pref="94" max="-2" attributes="0"/>
+              <EmptySpace pref="840" max="32767" attributes="0"/>
+          </Group>
+          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="CalendarImg" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              </Group>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="300" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace pref="768" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lvl1Btn" alignment="3" min="-2" pref="99" max="-2" attributes="0"/>
+                  <Component id="lvl2Btn" alignment="3" min="-2" pref="99" max="-2" attributes="0"/>
+                  <Component id="lvl3Btn" alignment="3" min="-2" pref="99" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="341" max="-2" attributes="0"/>
+          </Group>
+          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="CalendarImg" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              </Group>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="CalendarImg">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <SerializedValue value="-84,-19,0,5,115,114,0,78,111,114,103,46,110,101,116,98,101,97,110,115,46,109,111,100,117,108,101,115,46,102,111,114,109,46,82,65,68,67,111,110,110,101,99,116,105,111,110,80,114,111,112,101,114,116,121,69,100,105,116,111,114,36,82,65,68,67,111,110,110,101,99,116,105,111,110,68,101,115,105,103,110,86,97,108,117,101,2,10,-70,90,-35,-97,-57,100,2,0,7,73,0,4,116,121,112,101,76,0,10,109,101,116,104,111,100,78,97,109,101,116,0,18,76,106,97,118,97,47,108,97,110,103,47,83,116,114,105,110,103,59,76,0,12,112,114,111,112,101,114,116,121,78,97,109,101,113,0,126,0,1,76,0,16,114,97,100,67,111,109,112,111,110,101,110,116,78,97,109,101,113,0,126,0,1,76,0,16,114,101,113,117,105,114,101,100,84,121,112,101,78,97,109,101,113,0,126,0,1,76,0,8,117,115,101,114,67,111,100,101,113,0,126,0,1,76,0,5,118,97,108,117,101,113,0,126,0,1,120,112,0,0,0,2,112,112,112,112,116,0,0,112"/>
+        </Property>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="null" type="code"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="java.net.URL imgURL = getClass().getResource(&quot;/Art/Backgrounds/CalendarImg.jpg&quot;);&#xa;if (imgURL != null) {&#xa;    javax.swing.ImageIcon originalIcon = new javax.swing.ImageIcon(imgURL);&#xa;    java.awt.Image originalImage = originalIcon.getImage();&#xa;&#xa;    int newWidth = 1000; &#xa;    int newHeight = 700;&#xa;&#xa;    java.awt.Image scaledImage = originalImage.getScaledInstance(newWidth, newHeight, java.awt.Image.SCALE_SMOOTH);&#xa;    CalendarImg.setIcon(new javax.swing.ImageIcon(scaledImage));&#xa;}"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="lvl1Btn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="    "/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lvl1BtnActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="lvl1Btn.setOpaque(false);&#xa;lvl1Btn.setContentAreaFilled(false);&#xa;lvl1Btn.setBorderPainted(false);"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="lvl2Btn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="    "/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lvl2BtnActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="lvl2Btn.setOpaque(false);&#xa;lvl2Btn.setContentAreaFilled(false);&#xa;lvl2Btn.setBorderPainted(false);"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="lvl3Btn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="     "/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lvl3BtnActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="lvl3Btn.setOpaque(false);&#xa;lvl3Btn.setContentAreaFilled(false);&#xa;lvl3Btn.setBorderPainted(false);"/>
+      </AuxValues>
+    </Component>
+  </SubComponents>
 </Form>

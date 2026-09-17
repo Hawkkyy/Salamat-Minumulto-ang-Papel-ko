@@ -4,6 +4,8 @@
  */
 package css123proj.salamatminumultoangpapelko.Panels;
 
+import java.util.function.Consumer;
+
 /**
  *
  * @author hawk
@@ -13,7 +15,12 @@ public class Instructions extends javax.swing.JPanel {
     /**
      * Creates new form Instructions
      */
-    public Instructions() {
+    
+    private Consumer<String> goTo;
+    
+    public Instructions(Consumer<String> goTo) {
+        
+        this.goTo = goTo;
         initComponents();
     }
 

@@ -2,18 +2,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package css123proj.salamatminumultoangpapelko.Models.LevelTemplates;
+package css123proj.salamatminumultoangpapelko.Panels;
+
+import java.util.function.Consumer;
 
 /**
  *
  * @author hawk
  */
-public class TestPaperUI extends javax.swing.JPanel {
+public class Credits extends javax.swing.JPanel {
 
     /**
-     * Creates new form TestPaperUI
+     * Creates new form Credits
      */
-    public TestPaperUI() {
+    
+    private Consumer<String> goTo;
+            
+    
+    public Credits(Consumer<String> goTo) {
+        
+        this.goTo = goTo;
+        
         initComponents();
     }
 

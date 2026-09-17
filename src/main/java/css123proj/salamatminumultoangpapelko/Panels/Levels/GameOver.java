@@ -4,6 +4,8 @@
  */
 package css123proj.salamatminumultoangpapelko.Panels.Levels;
 
+import java.util.function.Consumer;
+
 /**
  *
  * @author hawk
@@ -13,7 +15,14 @@ public class GameOver extends javax.swing.JPanel {
     /**
      * Creates new form GameOver
      */
-    public GameOver() {
+    
+    private Consumer<String> goTo;
+            
+    
+    public GameOver(Consumer<String> goTo) {
+        
+        this.goTo = goTo;
+        
         initComponents();
     }
 

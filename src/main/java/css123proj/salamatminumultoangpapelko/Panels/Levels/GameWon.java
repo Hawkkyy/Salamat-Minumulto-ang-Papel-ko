@@ -4,6 +4,8 @@
  */
 package css123proj.salamatminumultoangpapelko.Panels.Levels;
 
+import java.util.function.Consumer;
+
 /**
  *
  * @author hawk
@@ -13,7 +15,11 @@ public class GameWon extends javax.swing.JPanel {
     /**
      * Creates new form GameWon
      */
-    public GameWon() {
+    
+    private Consumer<String> goTo;
+    
+    public GameWon(Consumer<String> goTo) {
+        this.goTo = goTo;
         initComponents();
     }
 

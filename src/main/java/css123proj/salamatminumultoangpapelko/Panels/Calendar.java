@@ -4,6 +4,8 @@
  */
 package css123proj.salamatminumultoangpapelko.Panels;
 
+import java.util.function.Consumer;
+
 /**
  *
  * @author hawk
@@ -13,7 +15,12 @@ public class Calendar extends javax.swing.JPanel {
     /**
      * Creates new form Calendar
      */
-    public Calendar() {
+    
+    private Consumer<String> goTo;
+            
+    public Calendar(Consumer<String> goTo) {
+        
+        this.goTo = goTo;
         initComponents();
     }
 
@@ -26,19 +33,106 @@ public class Calendar extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        CalendarImg = new javax.swing.JLabel();
+        lvl1Btn = new javax.swing.JButton();
+        lvl2Btn = new javax.swing.JButton();
+        lvl3Btn = new javax.swing.JButton();
+
+        CalendarImg.setText(null);
+
+        lvl1Btn.setText("    ");
+        lvl1Btn.addActionListener(this::lvl1BtnActionPerformed);
+
+        lvl2Btn.setText("    ");
+        lvl2Btn.addActionListener(this::lvl2BtnActionPerformed);
+
+        lvl3Btn.setText("     ");
+        lvl3Btn.addActionListener(this::lvl3BtnActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(515, 515, 515)
+                .addComponent(lvl1Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lvl2Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lvl3Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(840, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(CalendarImg)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(768, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lvl1Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lvl2Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lvl3Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(341, 341, 341))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(CalendarImg)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
+
+        java.net.URL imgURL = getClass().getResource("/Art/Backgrounds/CalendarImg.jpg");
+        if (imgURL != null) {
+            javax.swing.ImageIcon originalIcon = new javax.swing.ImageIcon(imgURL);
+            java.awt.Image originalImage = originalIcon.getImage();
+
+            int newWidth = 1000;
+            int newHeight = 700;
+
+            java.awt.Image scaledImage = originalImage.getScaledInstance(newWidth, newHeight, java.awt.Image.SCALE_SMOOTH);
+            CalendarImg.setIcon(new javax.swing.ImageIcon(scaledImage));
+        }
+        lvl1Btn.setOpaque(false);
+        lvl1Btn.setContentAreaFilled(false);
+        lvl1Btn.setBorderPainted(false);
+        lvl2Btn.setOpaque(false);
+        lvl2Btn.setContentAreaFilled(false);
+        lvl2Btn.setBorderPainted(false);
+        lvl3Btn.setOpaque(false);
+        lvl3Btn.setContentAreaFilled(false);
+        lvl3Btn.setBorderPainted(false);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lvl1BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lvl1BtnActionPerformed
+        // TODO add your handling code here:
+        
+        System.out.println("Redirecting to Level 1...");
+        goTo.accept("Level 1");
+        
+    }//GEN-LAST:event_lvl1BtnActionPerformed
+
+    private void lvl2BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lvl2BtnActionPerformed
+        // TODO add your handling code here:
+        
+        System.out.println("Redirecting to Level 2...");
+        goTo.accept("Level 2");
+    }//GEN-LAST:event_lvl2BtnActionPerformed
+
+    private void lvl3BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lvl3BtnActionPerformed
+        // TODO add your handling code here:
+        
+        System.out.println("Redirecting to Level 3...");
+        goTo.accept("Level 3");
+        
+    }//GEN-LAST:event_lvl3BtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel CalendarImg;
+    private javax.swing.JButton lvl1Btn;
+    private javax.swing.JButton lvl2Btn;
+    private javax.swing.JButton lvl3Btn;
     // End of variables declaration//GEN-END:variables
 }

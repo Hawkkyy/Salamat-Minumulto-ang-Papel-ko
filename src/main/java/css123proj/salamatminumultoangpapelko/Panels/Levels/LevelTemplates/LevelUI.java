@@ -2,27 +2,35 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package css123proj.salamatminumultoangpapelko.Panels;
-
-import java.util.function.Consumer;
+package css123proj.salamatminumultoangpapelko.Panels.Levels.LevelTemplates;
 
 /**
  *
  * @author hawk
  */
-public class EndingCutscene extends javax.swing.JPanel {
+public class LevelUI extends javax.swing.JPanel {
 
-    /**
-     * Creates new form EndingCutscene
-     */
     
-    private Consumer<String> goTo;
     
-    public EndingCutscene(Consumer<String> goTo) {
+    public LevelUI() {
         
-        this.goTo = goTo;
+        setLayout(null);
+        
+        /*
+        JPanel dialogueBox = new JPanel();
+        JPanel miniMap = new JPanel();
+
+        // setBounds(x, y, width, height)
+        miniMap.setBounds(20, 20, 150, 150);          // Top-left corner
+        dialogueBox.setBounds(50, 500, 700, 120);     // Bottom area
+
+        add(miniMap);
+        add(dialogueBox);
+        */
+        
+        
+        
         initComponents();
-        
     }
 
     /**

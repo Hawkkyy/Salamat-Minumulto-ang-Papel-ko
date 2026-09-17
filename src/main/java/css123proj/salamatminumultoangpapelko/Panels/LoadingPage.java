@@ -4,6 +4,8 @@
  */
 package css123proj.salamatminumultoangpapelko.Panels;
 
+import java.util.function.Consumer;
+
 /**
  *
  * @author hawk
@@ -13,8 +15,14 @@ public class LoadingPage extends javax.swing.JPanel {
     /**
      * Creates new form LoadingPage
      */
-    public LoadingPage() {
+    
+    private Consumer<String> goTo;
+    
+    public LoadingPage(Consumer<String> goTo) {
+        
+        this.goTo = goTo;
         initComponents();
+        
     }
 
     /**

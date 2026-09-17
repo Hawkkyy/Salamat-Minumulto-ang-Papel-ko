@@ -4,6 +4,8 @@
  */
 package css123proj.salamatminumultoangpapelko.Panels.Levels;
 
+import java.util.function.Consumer;
+
 /**
  *
  * @author hawk
@@ -13,7 +15,16 @@ public class Level3 extends javax.swing.JPanel {
     /**
      * Creates new form Level3
      */
-    public Level3() {
+    
+    
+    private Consumer<String> goTo;
+            
+    
+    
+    public Level3(Consumer<String> goTo) {
+        
+        
+        this.goTo = goTo;
         initComponents();
     }
 
