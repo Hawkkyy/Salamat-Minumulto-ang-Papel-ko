@@ -4,9 +4,15 @@
  */
 package css123proj.salamatminumultoangpapelko.Models;
 
+import css123proj.salamatminumultoangpapelko.Panels.Levels.CustomEvents.SwitchTool;
+import css123proj.salamatminumultoangpapelko.Panels.Levels.CustomEvents.SwitchToolListener;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.imageio.ImageIO;
 
 /**
@@ -17,6 +23,8 @@ public class CorrectionTape extends javax.swing.JPanel {
 
     
     private Image corTapeImg;
+    private List<SwitchToolListener> listeners = new ArrayList<>();
+    private SwitchToolListener switchToolListen;
     
     
     public CorrectionTape() {
@@ -28,8 +36,44 @@ public class CorrectionTape extends javax.swing.JPanel {
         
         setOpaque(false);
         initComponents();
+        
+        addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                
+                if (listeners.isEmpty() == false ){
+                    triggerSwitch("CORRECTION TAPE");
+                }
+                
+            }
+            
+        });
+        
     }
 
+    public void addSwitchToolListener(SwitchToolListener listener){
+        listeners.add(listener);
+    }
+    
+    public void removeSwitchToolListener(SwitchToolListener listener){
+        listeners.remove(listener);
+    }
+    
+    public void triggerSwitch(String toolSelected){
+        
+        System.out.println("CORRECTION TAPE SELECTED");
+        
+        SwitchTool evt = new SwitchTool(this, toolSelected);
+        for (SwitchToolListener listener : listeners) {
+            listener.onToolSelected(evt);
+        }
+        
+    }
+    
+    public void setToolSelected(SwitchToolListener l){
+        this.switchToolListen = l;
+    }
+    
     
     @Override
     protected void paintComponent(Graphics g) {

@@ -4,16 +4,18 @@
  */
 package css123proj.salamatminumultoangpapelko.Models.TestPaperTemplates;
 
+import css123proj.salamatminumultoangpapelko.Panels.Levels.CustomEvents.SwitchTool;
+import css123proj.salamatminumultoangpapelko.Panels.Levels.CustomEvents.SwitchToolListener;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-
+import javax.swing.*;
 /**
  *
  * @author hawk
  */
-public class TestPaperUI extends javax.swing.JPanel {
+public class TestPaperUI extends JPanel implements SwitchToolListener{
 
     
     private Image testPaperImg;
@@ -30,6 +32,12 @@ public class TestPaperUI extends javax.swing.JPanel {
         initComponents();
     }
 
+    
+    @Override
+    public void onToolSelected(SwitchTool evt){
+        
+    }
+    
     
     @Override
     protected void paintComponent(Graphics g) {

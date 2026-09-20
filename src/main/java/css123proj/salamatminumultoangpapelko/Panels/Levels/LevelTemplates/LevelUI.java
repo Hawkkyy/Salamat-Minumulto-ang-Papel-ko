@@ -5,17 +5,20 @@
 package css123proj.salamatminumultoangpapelko.Panels.Levels.LevelTemplates;
 
 import css123proj.salamatminumultoangpapelko.Models.*;
+import css123proj.salamatminumultoangpapelko.Models.Menu.MenuButton;
 import css123proj.salamatminumultoangpapelko.Models.TestPaperTemplates.*;
+import css123proj.salamatminumultoangpapelko.Panels.Levels.CustomEvents.SwitchTool;
+import css123proj.salamatminumultoangpapelko.Panels.Levels.CustomEvents.SwitchToolListener;
 import java.awt.*;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 /**
  *
  * @author hawk
  */
-public class LevelUI extends javax.swing.JPanel {
+public class LevelUI extends JPanel implements SwitchToolListener{
 
     private Image levelImg;
     TestPaperUI testPaper;
@@ -24,6 +27,8 @@ public class LevelUI extends javax.swing.JPanel {
     CorrectionTape corTape;
     GreenBallpen ballpen;
     TestPaperStack papStack;
+    MenuButton menu;
+    
     public LevelUI() {
         
         setLayout(null);
@@ -40,6 +45,12 @@ public class LevelUI extends javax.swing.JPanel {
         corTape = new CorrectionTape();
         ballpen = new GreenBallpen();
         papStack = new TestPaperStack();
+        menu = new MenuButton();
+        
+        ////
+        
+        ballpen.addSwitchToolListener(this);
+        corTape.addSwitchToolListener(this);
         
         // x y w h
         
@@ -51,16 +62,24 @@ public class LevelUI extends javax.swing.JPanel {
         corTape.setBounds(1400, 700, 100, 200);
         papStack.setBounds(1600, 500, 600, 900);
         
+        menu.setBounds(1625, 30, 200, 50);
+        
         
         add(testPaper);
         add(ansKey);
-        add(clock);
         add(corTape);
         add(ballpen);
         add(papStack);
-        
+        add(menu);
+        add(clock);
     }
     
+    
+    
+    @Override
+    public void onToolSelected(SwitchTool evt){
+        System.out.println("Switched to "+evt.getSelectedTool());
+    }
     
     @Override
     protected void paintComponent(Graphics g) {
