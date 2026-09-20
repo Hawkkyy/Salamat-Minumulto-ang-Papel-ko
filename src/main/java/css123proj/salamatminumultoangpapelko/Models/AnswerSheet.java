@@ -4,19 +4,39 @@
  */
 package css123proj.salamatminumultoangpapelko.Models;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+
 /**
  *
  * @author hawk
  */
 public class AnswerSheet extends javax.swing.JPanel {
 
-    /**
-     * Creates new form AnswerSheet
-     */
+    
+    private Image ansKeyImg;
+    
     public AnswerSheet() {
+        try {
+            ansKeyImg = ImageIO.read(getClass().getResource("/Art/Models/AnswerKey/AnswerSheetImg.png"));
+        } catch (IOException | IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+        
+        setOpaque(false);
         initComponents();
     }
 
+    
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (ansKeyImg != null) {
+            g.drawImage(ansKeyImg, 0, 0, getWidth(), getHeight(), this);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -4,14 +4,41 @@
  */
 package css123proj.salamatminumultoangpapelko.Models;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+
 /**
  *
  * @author hawk
  */
 public class CorrectionTape extends javax.swing.JPanel {
 
+    
+    private Image corTapeImg;
+    
+    
     public CorrectionTape() {
+    try {
+            corTapeImg = ImageIO.read(getClass().getResource("/Art/Models/CorrectionTape/CorrectionTapeImg.png"));
+        } catch (IOException | IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+        
+        setOpaque(false);
+        initComponents();
     }
+
+    
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (corTapeImg != null) {
+            g.drawImage(corTapeImg, 0, 0, getWidth(), getHeight(), this);
+        }
+    }
+    
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 

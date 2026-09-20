@@ -33,19 +33,35 @@ public class Level1 extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        levelUI1 = new css123proj.salamatminumultoangpapelko.Panels.Levels.LevelTemplates.LevelUI();
+        levelUI3 = new css123proj.salamatminumultoangpapelko.Panels.Levels.LevelTemplates.LevelUI();
+
+        javax.swing.GroupLayout levelUI3Layout = new javax.swing.GroupLayout(levelUI3);
+        levelUI3.setLayout(levelUI3Layout);
+        levelUI3Layout.setHorizontalGroup(
+            levelUI3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1147, Short.MAX_VALUE)
+        );
+        levelUI3Layout.setVerticalGroup(
+            levelUI3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 833, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(levelUI3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(levelUI3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private css123proj.salamatminumultoangpapelko.Panels.Levels.LevelTemplates.LevelUI levelUI1;
+    private css123proj.salamatminumultoangpapelko.Panels.Levels.LevelTemplates.LevelUI levelUI3;
     // End of variables declaration//GEN-END:variables
 }

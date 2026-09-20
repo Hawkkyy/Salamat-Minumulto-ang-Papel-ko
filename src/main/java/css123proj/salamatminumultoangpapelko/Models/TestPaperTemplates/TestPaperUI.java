@@ -4,19 +4,41 @@
  */
 package css123proj.salamatminumultoangpapelko.Models.TestPaperTemplates;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+
 /**
  *
  * @author hawk
  */
 public class TestPaperUI extends javax.swing.JPanel {
 
-    /**
-     * Creates new form TestPaperUI
-     */
+    
+    private Image testPaperImg;
+    
     public TestPaperUI() {
+        
+        try {
+            testPaperImg = ImageIO.read(getClass().getResource("/Art/Models/TestPaper/TestPaperImg.png"));
+        } catch (IOException | IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+        
+        setOpaque(false);
         initComponents();
     }
 
+    
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (testPaperImg != null) {
+            g.drawImage(testPaperImg, 0, 0, getWidth(), getHeight(), this);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,11 +52,11 @@ public class TestPaperUI extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 680, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 839, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
