@@ -1,10 +1,12 @@
 css123proj/salamatminumultoangpapelko/Models/GreenBallpen.class
 css123proj/salamatminumultoangpapelko/Panels/Levels/Level2.class
 css123proj/salamatminumultoangpapelko/GameFrame.class
+css123proj/salamatminumultoangpapelko/Panels/Levels/LevelTemplates/LevelUI$1.class
 css123proj/salamatminumultoangpapelko/Models/TestPaperTemplates/TestPaperData.class
 css123proj/salamatminumultoangpapelko/Models/CorrectionTape$1.class
 css123proj/salamatminumultoangpapelko/Panels/LoadingPage.class
 css123proj/salamatminumultoangpapelko/Panels/Settings.class
+css123proj/salamatminumultoangpapelko/Panels/Levels/LevelTemplates/LevelUI$3.class
 css123proj/salamatminumultoangpapelko/Panels/OpeningCutscene$2.class
 css123proj/salamatminumultoangpapelko/Panels/Levels/CustomEvents/SwitchToolListener.class
 css123proj/salamatminumultoangpapelko/Models/TestPaper.class
@@ -18,6 +20,8 @@ css123proj/salamatminumultoangpapelko/Panels/Levels/LevelTemplates/LevelData.cla
 css123proj/salamatminumultoangpapelko/Panels/OpeningCutscene$3.class
 css123proj/salamatminumultoangpapelko/Models/Menu/MenuButton.class
 css123proj/salamatminumultoangpapelko/Panels/OpeningCutscene$1.class
+css123proj/salamatminumultoangpapelko/Panels/Levels/Instructions.class
+css123proj/salamatminumultoangpapelko/Panels/Levels/LevelTemplates/LevelUI$2.class
 css123proj/salamatminumultoangpapelko/Models/GreenBallpen$1.class
 css123proj/salamatminumultoangpapelko/Models/TestPaperStack.class
 css123proj/salamatminumultoangpapelko/Panels/Levels/Level3.class
@@ -26,7 +30,6 @@ css123proj/salamatminumultoangpapelko/Panels/Credits.class
 css123proj/salamatminumultoangpapelko/Models/TestPaperTemplates/TestPaperUI.class
 css123proj/salamatminumultoangpapelko/Panels/TitleScreen.class
 css123proj/salamatminumultoangpapelko/Panels/EndingCutscene.class
-css123proj/salamatminumultoangpapelko/Panels/Instructions.class
 css123proj/salamatminumultoangpapelko/Panels/Levels/Level1.class
 css123proj/salamatminumultoangpapelko/Panels/Calendar.class
 css123proj/salamatminumultoangpapelko/Models/Menu/MenuButton$1.class
