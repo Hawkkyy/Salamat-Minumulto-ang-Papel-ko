@@ -28,12 +28,11 @@ public class LevelUI extends JPanel implements SwitchToolListener {
     JMenuItem resume, inst, cal, title, restart, quit;
     JSeparator sep1, sep2, sep3, sep4, sep5;
 
-    // Base resolution you originally designed for (e.g., 1920 x 1080)
     private static final double BASE_WIDTH = 1920.0;
     private static final double BASE_HEIGHT = 1080.0;
 
     public LevelUI() {
-        setLayout(null); // Keep absolute layout for free desk placement
+        setLayout(null); 
 
         try {
             levelImg = ImageIO.read(getClass().getResource("/Art/Backgrounds/LevelImg.jpg"));
@@ -79,7 +78,6 @@ public class LevelUI extends JPanel implements SwitchToolListener {
         ballpen.addSwitchToolListener(this);
         corTape.addSwitchToolListener(this);
 
-        // Add them to the panel
         add(testPaper);
         add(ansKey);
         add(corTape);
@@ -105,7 +103,7 @@ public class LevelUI extends JPanel implements SwitchToolListener {
         double sx = w / BASE_WIDTH;
         double sy = h / BASE_HEIGHT;
 
-        // Automatically scales your original coordinates: (x * sx, y * sy, w * sx, h * sy)
+       //(x * sx, y * sy, w * sx, h * sy)
         testPaper.setBounds((int)(550 * sx), (int)(100 * sy), (int)(650 * sx), (int)(900 * sy));
         ansKey.setBounds((int)(0 * sx), (int)(100 * sy), (int)(550 * sx), (int)(1000 * sy));
         clock.setBounds((int)(1530 * sx), (int)(30 * sy), (int)(350 * sx), (int)(160 * sy));
