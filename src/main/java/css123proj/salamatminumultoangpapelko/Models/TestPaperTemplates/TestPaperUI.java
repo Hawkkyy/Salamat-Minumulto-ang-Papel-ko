@@ -10,6 +10,7 @@ import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
+import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -45,19 +46,29 @@ public class TestPaperUI extends JPanel implements SwitchToolListener{
     scroll.getViewport().setOpaque(false);
     scroll.setBorder(null);
     scroll.getVerticalScrollBar().setUnitIncrement(16);
-    scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+    scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
     scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
     
     questHolder.setLayout(new BorderLayout());
     questHolder.add(scroll, BorderLayout.CENTER);
 
-    for (QuestionData q : TestPaperData.generateQuestions(level, set)) {
-    questArea.add(new QuestionUI(q));
+    List<QuestionData> list = TestPaperData.generateQuestions(level, set);
+           for (int i = 0; i < list.size(); i++) {
+            questArea.add(new QuestionUI(i + 1, list.get(i)));
+           }
+           
+    addComponentListener(new java.awt.event.ComponentAdapter() {
+    @Override
+    public void componentResized(java.awt.event.ComponentEvent e) {
+        questHolder.setPreferredSize(new java.awt.Dimension(
+                (int) (getWidth() * 0.87),
+                (int) (getHeight() * 0.72)));
+        revalidate();
     }
-        
+});  
             
 }
-//         testPaper.setBounds((int)(550 * sx), (int)(100 * sy), (int)(650 * sx), (int)(900 * sy));
+
 
    
     

@@ -12,8 +12,10 @@ public class QuestionUI extends javax.swing.JPanel {
     
     
     
-public QuestionUI(QuestionData q) {
-    initComponents();         
+public QuestionUI(int num, QuestionData q) {
+    initComponents();
+    questLbl.setText("<html><body style='width:420px'>" + num + ". " + q.question + "</body></html>");
+             
 
     questLbl.setText("<html><body style='width:420px'>" + q.question + "</body></html>");
 

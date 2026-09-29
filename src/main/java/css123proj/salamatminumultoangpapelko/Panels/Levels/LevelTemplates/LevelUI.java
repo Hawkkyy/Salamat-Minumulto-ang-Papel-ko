@@ -106,6 +106,7 @@ public class LevelUI extends JPanel implements SwitchToolListener {
        //(x * sx, y * sy, w * sx, h * sy)
         testPaper.setBounds((int)(550 * sx), (int)(100 * sy), (int)(650 * sx), (int)(900 * sy));
         ansKey.setBounds((int)(0 * sx), (int)(100 * sy), (int)(550 * sx), (int)(1000 * sy));
+        testPaper.setBounds((int)(550 * sx), (int)(100 * sy), (int)(650 * sx), (int)(900 * sy));        
         clock.setBounds((int)(1530 * sx), (int)(30 * sy), (int)(350 * sx), (int)(160 * sy));
         ballpen.setBounds((int)(1300 * sx), (int)(700 * sy), (int)(100 * sx), (int)(200 * sy));
         corTape.setBounds((int)(1400 * sx), (int)(700 * sy), (int)(100 * sx), (int)(200 * sy));

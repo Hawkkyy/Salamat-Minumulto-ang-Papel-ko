@@ -6,99 +6,106 @@ package css123proj.salamatminumultoangpapelko.Panels;
 
 import java.util.function.Consumer;
 
-/**
- *
- * @author hawk
- */
+
 public class Calendar extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Calendar
-     */
     
     private Consumer<String> goTo;
-            
+    private static final double BASE_WIDTH = 1920.0;
+    private static final double BASE_HEIGHT = 1080.0;     
+        
     public Calendar(Consumer<String> goTo) {
         
         this.goTo = goTo;
         initComponents();
+        
+        
+        
+        repositionElements();
+        
+        
+        
     }
+
+    private void repositionElements() {
+        int w = getWidth();
+        int h = getHeight();
+        if (w == 0 || h == 0) return;
+
+        double sx = w / BASE_WIDTH;
+        double sy = h / BASE_HEIGHT;
+
+        bgPane.setBounds((int)(0 * sx), (int)(100 * sy), (int)(550 * sx), (int)(1000 * sy));
+
+
+        revalidate();
+        repaint();
+    }
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLayeredPane1 = new javax.swing.JLayeredPane();
+        bgPane = new javax.swing.JLayeredPane();
         lvl1Btn = new javax.swing.JButton();
         lvl2Btn = new javax.swing.JButton();
         lvl3Btn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         lvl1Btn.setText("    ");
         lvl1Btn.setOpaque(true);
         lvl1Btn.addActionListener(this::lvl1BtnActionPerformed);
-
-        lvl2Btn.setText("    ");
-        lvl2Btn.setOpaque(true);
-        lvl2Btn.addActionListener(this::lvl2BtnActionPerformed);
-
-        lvl3Btn.setText("     ");
-        lvl3Btn.setOpaque(true);
-        lvl3Btn.addActionListener(this::lvl3BtnActionPerformed);
-
-        jLayeredPane1.setLayer(lvl1Btn, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(lvl2Btn, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(lvl3Btn, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
-        jLayeredPane1.setLayout(jLayeredPane1Layout);
-        jLayeredPane1Layout.setHorizontalGroup(
-            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                .addGap(133, 133, 133)
-                .addComponent(lvl1Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lvl2Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lvl3Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(580, Short.MAX_VALUE))
-        );
-        jLayeredPane1Layout.setVerticalGroup(
-            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
-                .addContainerGap(512, Short.MAX_VALUE)
-                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(lvl3Btn, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
-                    .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(lvl2Btn, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
-                        .addComponent(lvl1Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(147, 147, 147))
-        );
-
+        bgPane.add(lvl1Btn);
+        lvl1Btn.setBounds(250, 970, 150, 140);
         /*
         lvl1Btn.setOpaque(false);
         lvl1Btn.setContentAreaFilled(false);
         lvl1Btn.setBorderPainted(false);
         */
+
+        lvl2Btn.setText("    ");
+        lvl2Btn.setOpaque(true);
+        lvl2Btn.addActionListener(this::lvl2BtnActionPerformed);
+        bgPane.add(lvl2Btn);
+        lvl2Btn.setBounds(570, 970, 140, 140);
         /*
         lvl2Btn.setOpaque(false);
         lvl2Btn.setContentAreaFilled(false);
         lvl2Btn.setBorderPainted(false);
         */
+
+        lvl3Btn.setText("     ");
+        lvl3Btn.setOpaque(true);
+        lvl3Btn.addActionListener(this::lvl3BtnActionPerformed);
+        bgPane.add(lvl3Btn);
+        lvl3Btn.setBounds(870, 980, 130, 120);
         /*
         lvl3Btn.setOpaque(false);
         lvl3Btn.setContentAreaFilled(false);
         lvl3Btn.setBorderPainted(false);
         */
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Art/Backgrounds/CalendarImg.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        bgPane.add(jLabel1);
+        jLabel1.setBounds(40, -100, 1930, 2100);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(bgPane)
+                .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(bgPane)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -127,7 +134,8 @@ public class Calendar extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JLayeredPane bgPane;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton lvl1Btn;
     private javax.swing.JButton lvl2Btn;
     private javax.swing.JButton lvl3Btn;

@@ -16,7 +16,6 @@ public class Level1 extends javax.swing.JPanel {
         initComponents();
         
         
-        
     }
 
     @SuppressWarnings("unchecked")
