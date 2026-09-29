@@ -9,10 +9,6 @@ import java.awt.Image;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-/**
- *
- * @author hawk
- */
 public class TestPaper extends javax.swing.JPanel {
 
     private Image testPaperImg;

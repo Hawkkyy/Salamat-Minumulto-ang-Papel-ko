@@ -19,6 +19,7 @@ public class TestPaperStack extends javax.swing.JPanel {
     private Image paperStackImg;
     
     public TestPaperStack() {
+        
         try {
             paperStackImg = ImageIO.read(getClass().getResource("/Art/Models/TestPaperStack/TestPaperStackImg.png"));
         } catch (IOException | IllegalArgumentException e) {
@@ -27,6 +28,7 @@ public class TestPaperStack extends javax.swing.JPanel {
         
         setOpaque(false);
         initComponents();
+        
     }
 
     

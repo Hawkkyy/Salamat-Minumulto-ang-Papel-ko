@@ -3,6 +3,9 @@ package css123proj.salamatminumultoangpapelko.Models.TestPaperTemplates;
 
 import css123proj.salamatminumultoangpapelko.Panels.Levels.CustomEvents.SwitchTool;
 import css123proj.salamatminumultoangpapelko.Panels.Levels.CustomEvents.SwitchToolListener;
+import css123proj.salamatminumultoangpapelko.Models.TestPaperTemplates.TestPaperData;
+import css123proj.salamatminumultoangpapelko.Models.TestPaperTemplates.TestPaperData.QuestionData;
+
 import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -16,6 +19,7 @@ public class TestPaperUI extends JPanel implements SwitchToolListener{
     private Image testPaperImg;
     private JScrollPane scroll;
     private JPanel questArea;
+    int level = 1,set = 1;
     
     public TestPaperUI() {
         
@@ -27,45 +31,35 @@ public class TestPaperUI extends JPanel implements SwitchToolListener{
             e.printStackTrace();
         }
         
-        setOpaque(false);
-        scroll.setOpaque(false);
-        questHolder.setOpaque(false);
-        questArea.setOpaque(false);
-        //////
-        
-        scroll = new JScrollPane();
-        questHolder.setLayout(new BorderLayout());
-        
-        questArea = new JPanel();
-        questArea.add(scroll);
-        questArea.setLayout(new BoxLayout(questArea, BoxLayout.Y_AXIS));
-        
-        
-        
-        questHolder.add(questArea, BorderLayout.CENTER);
-        
-        
-        
-        
-        
-        
-        
-        
-        
+           setOpaque(false);
+    questHolder.setOpaque(false);
+    questHolder.setPreferredSize(new java.awt.Dimension(600, 700));
+    
+    questArea = new JPanel();
+    questArea.setOpaque(false);
+    questArea.setLayout(new BoxLayout(questArea, BoxLayout.Y_AXIS));
+    
+    
+    scroll = new JScrollPane(questArea);
+    scroll.setOpaque(false);
+    scroll.getViewport().setOpaque(false);
+    scroll.setBorder(null);
+    scroll.getVerticalScrollBar().setUnitIncrement(16);
+    scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+    scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+    
+    questHolder.setLayout(new BorderLayout());
+    questHolder.add(scroll, BorderLayout.CENTER);
+
+    for (QuestionData q : TestPaperData.generateQuestions(level, set)) {
+    questArea.add(new QuestionUI(q));
     }
+        
+            
+}
 //         testPaper.setBounds((int)(550 * sx), (int)(100 * sy), (int)(650 * sx), (int)(900 * sy));
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+   
     
     @Override
     public void onToolSelected(SwitchTool evt){
@@ -110,16 +104,15 @@ public class TestPaperUI extends JPanel implements SwitchToolListener{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(headerLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jToggleButton1)
-                        .addGap(11, 11, 11)))
+                .addComponent(headerLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addComponent(questHolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(questHolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(199, 199, 199)
+                        .addComponent(jToggleButton1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(

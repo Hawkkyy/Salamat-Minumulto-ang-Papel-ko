@@ -1,0 +1,375 @@
+[{
+    "questionType": "True or False",
+    "question": "Community diagnosis is a population-focused nursing practice",
+    "A.": "True",
+    "B.": "False",
+    "answer" : "A."
+}, {
+    "questionType": "True or False",
+    "question":"The changes in the definition of a family affect the essence of the family's health tasks.",
+    "A.":"True",
+    "B.":"False",
+    "answer":"B."
+} , {
+    "questionType": "True or False",
+    "question":"Extended family -- a type of Family based on composition or structure",
+    "A.":"True",
+    "B.":"False",
+    "answer":"A."
+}, {
+    "questionType": "True or False",
+    "question":"As a social system, the family operates in an orderly fashion wih all of its components linked interdependently together to achieve its purpose as a family and its role in society.",
+    "A.":"True",
+    "B.":"False",
+    "answer":"A."
+}, {
+    "questionType": "True or False",
+    "question":"The family is considered the natural and fundamental unit of society.",
+    "A.":"True",
+    "B.":"False",
+    "answer":"A."
+}, {
+    "questionType": "True or False",
+    "question":"The family is the most frequent cause of health issues and actions in personal care.",
+    "A.":"True",
+    "B.":"False",
+    "answer":"B."
+}, {
+    "questionType": "True or False",
+    "question":"In removing the gloves, we must turn the inside out to avoid touching the contaminated side.",
+    "A.":"True",
+    "B.":"False",
+    "answer":"A."
+}, {
+    "questionType": "True or False",
+    "question":"In medical handwashing, the hands are more contaminated than the lower arms.",
+    "A.":"True",
+    "B.":"False",
+    "answer":"A."
+}, {
+    "questionType": "True or False",
+    "question":"Medical asepsis involves clean technique.",
+    "A.":"True",
+    "B.":"False",
+    "answer":"A."
+}, {
+    "questionType": "True or False",
+    "question":"Disinfectant is a substance used on inanimate objects.",
+    "A.":"True",
+    "B.":"False",
+    "answer":"A."
+}, {
+    "questionType": "True or False",
+    "question":"Recovery from a disease provides natural active immunization.",
+    "A.":"True",
+    "B.":"False",
+    "answer":"B."
+}, {
+    "questionType": "True or False",
+    "question":"Handwashing for surgical asepsis is done by holding hands lower than elbows.",
+    "A.":"True",
+    "B.":"False",
+    "answer":"B."
+}, {
+    "questionType": "True or False",
+    "question":"Concurrent disinfection involves pracctices to remove pathogens from client's belongings and his immediate environment after his illness is no long communicable.",
+    "A.":"True",
+    "B.":"False",
+    "answer":"A."
+}, {
+    "questionType": "True or False",
+    "question":"Hands should be washed before and after removing the gloves.",
+    "A.":"True",
+    "B.":"False",
+    "answer":"A."
+}, {
+    "questionType": "True or False",
+    "question":"Clients with infection caused by the same type of microorganism maybe placed together in a room.",
+    "A.":"True",
+    "B.":"False",
+    "answer":"A."
+}, {
+    "questionType": "True or False",
+    "question":"During contact precaution, the nurse wears gloves before entering the client's room and removes gloves before leaving the room.",
+    "A.":"True",
+    "B.":"False",
+    "answer":"A."
+}, {
+    "questionType": "True or False",
+    "question":"Protective isolation is implemented to prevent transmission of infection from the client to other people.",
+    "A.":"True",
+    "B.":"False",
+    "answer":"A."
+}, {
+    "questionType": "True or False",
+    "question":"Airborne precaution requires that the client be confined in a private room and caregivers should wear masks when entering the client's room.",
+    "A.":"True",
+    "B.":"False",
+    "answer":"A."
+}, {
+    "questionType": "True or False",
+    "question":"Only sterile items are used within the unsterile field.",
+    "A.":"True",
+    "B.":"False",
+    "answer":"B."
+}, {
+    "questionType": "True or False",
+    "question":"Gowns are considered sterile only in front from the chest to the level of the sterile field and the sleeves.",
+    "A.":"True",
+    "B.":"False",
+    "answer":"A."
+}, {
+    "questionType": "True or False",
+    "question":"tables are sterile only at the table level.",
+    "A.":"True",
+    "B.":"False",
+    "answer":"A."
+}, {
+    "questionType": "True or False",
+    "question":"Sterile person must avoid reaching over a sterile field.",
+    "A.":"True",
+    "B.":"False",
+    "answer":"B."
+}, {
+    "questionType": "True or False",
+    "question":"It is part of the nursing assistant's role as client advocate to confirm that the client understands information given.",
+    "A.":"True",
+    "B.":"False",
+    "answer":"B."
+},{
+    "questionType": "True or False",
+    "question":"Adult client, over 18 years of age, signs own permit unless unconscious or mentally incompetent.",
+    "A.":"True",
+    "B.":"False",
+    "answer":"A."
+},{
+    "questionType": "True or False",
+    "question":"Witness to informed consent may be a nurse, another physician, clerk or other authorized person.",
+    "A.":"True",
+    "B.":"False",
+    "answer":"A."
+},{
+    "questionType": "True or False",
+    "question":"Surgeon obtains operative permit (informed consent).",
+    "A.":"True",
+    "B.":"False",
+    "answer":"B."
+},{
+    "questionType": "True or False",
+    "question": "The De facto method is done when people are assigned to the palace where they usually live, regardless of where they are at the time of the census.",
+    "A.": "True",
+    "B.": "False",
+    "answer": "B."
+} ,
+
+
+{
+    "questionType": "Multiple Choice",
+    "question": "Community health nursing is focus in the care of which of the following?",
+    "A.": "Community",
+    "B.": "Individual",
+    "C.": "Family",
+    "D.": "All of the above",
+    "answer" : "D."
+} , {
+    "questionType": "Multiple Choice",
+    "question": "According to C.E. Winslow, which of the following is the goal of Public Health?",
+    "A.": "For people to attain their birthrights and longevity.",
+    "B.": "For promotion of health and prevention and diseases.",
+    "C.": "For people to have access to basic health services.",
+    "D.": "For people to be organized in their health efforts.",
+    "answer" : "A."
+} , {
+    "questionType": "Multiple Choice",
+    "question": "According to Margaret Shetland, the philosophy of public health nursing is based on which of the following?",
+    "A.": "Health and longevity as birthrights",
+    "B.": "The mandate of the state to protect the birthrights of its citizens.",
+    "C.": "Public health nursing as a specialized field of nursing.",
+    "D.": "The worth and dignity of man",
+    "answer" : "D."
+} , { 
+    "questionType": "Multiple Choice",
+    "question": "Which is an example of the school’s nurses’ health care provider function?",
+    "A.": "Requesting BCG from the RHU for school entrance immunization.",
+    "B.": "Conducting random classroom inspection during measles epidemic.",
+    "C.": "Taking remedial action on an accident hazard in the school playground.",
+    "D.": "Observing places in the school where pupils spend their free times.",
+    "answer" : "B."
+} , {
+    "questionType": "Multiple Choice",
+    "question": "Which of the following is the best description of a health belief model?",
+    "A.": "Developed to explain and predict health-related behaviors, particularly with regards to the uptake of health services.",
+    "B.": "Each person has unique personal characteristics and experiences that affect subsequent actions.",
+    "C.": "Health behavior is regarded as being influenced by both individual and environmental factors.",
+    "D.": "The behavioral patterns of the populations and individuals who make up populations.",
+    "answer" : "A."
+} , {
+    "questionType": "Multiple Choice",
+    "question": "Which of the following best describes the 3rd stage of group development?",
+    "A.": "Team acquaints and establishes ground rules.",
+    "B.": "Start to communicate their feelings, but resist to control by a group",
+    "C.": "They feel that they are part of the team, and accept other viewpoints",
+    "D.": "Acknowledging each member’s contribution to the group",
+    "answer" : "C."
+} , {
+    "questionType": "Multiple Choice",
+    "question": "This intervention to facilitate group work is provided to a new member to prevent conflicts and improve creativity and foster a sense of belongingness.",
+    "A.": "Orientation",
+    "B.": "Group structure",
+    "C.": "Conformity",
+    "D.": "Direction",
+    "answer" : "A."
+} , {
+    "questionType": "Multiple Choice",
+    "question": "It refers to how an organization's members work together to get things done",
+    "A.": "Negotiation",
+    "B.": "Group structure",
+    "C.": "Group process",
+    "D.": "Orientation",
+    "answer" : "C."
+} , {
+    "questionType": "Multiple Choice",
+    "question": "You set directions by:",
+    "A.": "Creating a shared vision",
+    "B.": "Identifying shared values",
+    "C.": "Setting clear goals",
+    "D.": "A & b only",
+    "E.": "All of the above",
+    "answer" : "E."
+} , {
+    "questionType": "Multiple Choice",
+    "question": "As a member or leader of a group, it is very important to observe that aspect of group process - who talks, for how long and how often, at whom do people look when they speak, able to identify individuals, supporters, and who interrupts in the conversation. What do you call this pattern?",
+    "A.": "Patterns of negotiation",
+    "B.": "Patterns of communication",
+    "C.": "Patterns of group structure",
+    "D.": "Conflict resolution",
+    "answer" : "A."
+} , {
+    "questionType": "Multiple Choice",
+    "question": "It is a way for two or more parties to find a peaceful solution to a disagreement among them.",
+    "A.": "Effective communication",
+    "B.": "Defining a problem",
+    "C.": "Negotiation",
+    "D.": "Conflict resolution",
+    "answer" : "C."
+} , {
+    "questionType": "Multiple Choice",
+    "question": "A science which deals with the study of the human population’s size, composition, and distribution in space.",
+    "A.": "Geography",
+    "B.": "Census",
+    "C.": "Demography",
+    "D.": "Survey",
+    "answer" : "C"
+} , {
+    "questionType": "Multiple Choice",
+    "question": "Demographic information consists of:",
+    "A.": "Age",
+    "B.": "Sex or gender",
+    "C.": "Educational level",
+    "D.": "All are correct",
+    "answer" : "D."
+} , {
+    "questionType": "Multiple Choice", 
+    "question": "A count of population in a particular area is known as:",
+    "A.": "Survey",
+    "B.": "Census",
+    "C.": "Registration System",
+    "D.": "Vital statistics",
+    "answer" : "B."
+} , {
+    "questionType": "Multiple Choice",
+    "question": "It describes the difference between the number of births and the number of deaths occuring in a population in a specific period.",
+    "A.": "Absolute increase per year",
+    "B.": "Relative increase",
+    "C.": "Natural increase",
+    "D.": "Sex ratio",
+    "answer" : "C."
+} , {
+    "questionType": "Multiple Choice",
+    "question": "What formula should be used to describe the sex composition of the population, and compare the number of males to the number of females in the population?",
+    "A.": "Dependency ratio",
+    "B.": "Relative increase",
+    "C.": "Natural increase",
+    "D.": "Sex ratio",
+    "answer" : "D."
+} , {
+    "questionType": "Multiple Choice",
+    "question": "Filipinos tend to live longer now than in previous decades. In 2016, the average life expectancy at birth was:",
+    "A.": "70",
+    "B.": "68",
+    "C.": "E69",
+    "D.": "71",
+    "answer" : "C."
+} , {
+    "questionType": "Multiple Choice",
+    "question": "Diseases that are always present in a community, usually at a low, more or less constant, frequency is classified as having an:",
+    "A.": "Pandemic",
+    "B.": "Epidemic",
+    "C.": "Endemic",
+    "D.": "Epidemiology",
+    "answer" : "C."
+} , {
+    "questionType": "Multiple Choice",
+    "question": "Which of the following statements is true concerning epidemic diseases?",
+    "A.": "They are usually not very contagious.",
+    "B.": "A disease spreads at an increasing rate and is generated from a common or propagated source. ",
+    "C.": "They usually appear and disappear seasonally.",
+    "D.": "Habitual presence of a disease within a given geographic area.",
+    "answer" : "C."
+} , {
+    "questionType": "Multiple Choice", 
+    "question": "An outbreak that becomes unusually widespread and affecting an exceptionally high proportion of the global population.",
+    "A.": "Covid-19",
+    "B.": "Hyperendemic",
+    "C.": "Spanish flu",
+    "D.": "Pandemic",
+    "answer" : "D."
+} , {
+    "questionType": "Multiple Choice",
+    "question": "Which of the following best describes the meaning of epidemiology?",
+    "A.": "The frequency and distribution of diseases, death, disabilities in the human population.",
+    "B.": "A comprehensive survey of all aspects of the community.",
+    "C.": "Statistical data about the characteristics of a population.",
+    "D.": "A progression of the disease process.",
+    "answer" : "A."
+} , {
+    "questionType": "Multiple Choice",
+    "question": "What type of community refers to the ability of a population to resist an epidemic?",
+    "A.": "Active immunity",
+    "B.": "Passive immunity",
+    "C.": "Herd immunity",
+    "D.": "Cross immunity",
+    "answer" : "C."
+} , {
+    "questionType": "Multiple Choice",
+    "question": "Herd immunity is…",
+    "A.": "Immunity level that is present in a population.",
+    "B.": "Antibodies that develop in a person’s own immune system.",
+    "C.": "An immunity that occurs naturally",
+    "D.": "None of the above",
+    "answer" : "A."
+} , {
+    "questionType": "Multiple Choice",
+    "question": "Host refers to:",
+    "A.": "With the presence of, excessive presence, or lack of is essential for the occurrence of a disease",
+    "B.": "This is the domain in which disease-causing agents may exist, survive, or come from.",
+    "C.": "Is the person or animal that provides sustenance for an infectious agent under natural conditions.",
+    "D.": "The external factors that cause or allow diseases.",
+    "answer" : "C."
+} , {
+    "questionType": "Multiple Choice",
+    "question": "The epidemiological triangle consists of three components, which of these does not belong?",
+    "A.": "Agent",
+    "B.": "Host",
+    "C.": "Environment",
+    "D.": "Habits",
+    "answer" : "C."
+} , {
+    "questionType":"Multiple Choice",
+    "question":"Which among the levels of health prevention is focused on the activities that will prevent a problem before it occurs?",
+    "A.": "Primary",
+    "B.": "Secondary",
+    "C.": "Tertiary:",
+    "D.": "None of the above",
+    "answer": "A."
+}]
