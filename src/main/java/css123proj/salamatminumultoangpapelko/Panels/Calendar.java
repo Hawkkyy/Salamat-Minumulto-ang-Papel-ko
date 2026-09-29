@@ -1,45 +1,99 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package css123proj.salamatminumultoangpapelko.Panels;
 
+import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.io.IOException;
 import java.util.function.Consumer;
+import javax.imageio.ImageIO;
+import javax.swing.*;
 
+public class Calendar extends JPanel {
 
-public class Calendar extends javax.swing.JPanel {
-
-    
-    private Consumer<String> goTo;
     private static final double BASE_WIDTH = 1920.0;
-    private static final double BASE_HEIGHT = 1080.0;     
-        
+    private static final double BASE_HEIGHT = 1080.0;
+
+    // set to true to see the button areas while positioning them
+    private static final boolean DEBUG = true;
+
+    private final Consumer<String> goTo;
+    private Image bg;
+
+    // button areas in the 1920 x 1080 design space: x, y, w, h
+    private final Rectangle r1 = new Rectangle(250, 970, 150, 140);
+    private final Rectangle r2 = new Rectangle(570, 970, 140, 140);
+    private final Rectangle r3 = new Rectangle(870, 980, 130, 120);
+
     public Calendar(Consumer<String> goTo) {
-        
         this.goTo = goTo;
-        initComponents();
+        setLayout(null);
         
-        
-        
-        repositionElements();
-        
-        
-        
+        lvl1Btn = new JButton();
+        lvl2Btn = new JButton();
+        lvl3Btn = new JButton();
+
+
+        try {
+            bg = ImageIO.read(getClass().getResource("/Art/Backgrounds/CalendarImg.jpg"));
+        } catch (IOException | IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+
+        setupButton(lvl1Btn, "Level 1");
+        setupButton(lvl2Btn, "Level 2");
+        setupButton(lvl3Btn, "Level 3");
+
+        addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                repositionElements();
+            }
+        });
+    }
+
+    private void setupButton(JButton b, String screen) {
+        if (!DEBUG) {
+            b.setOpaque(false);
+            b.setContentAreaFilled(false);
+            b.setBorderPainted(false);
+            b.setFocusPainted(false);
+        }
+        b.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        b.addActionListener(e -> {
+            System.out.println("Redirecting to " + screen + "...");
+            goTo.accept(screen);
+        });
+        add(b);
     }
 
     private void repositionElements() {
-        int w = getWidth();
-        int h = getHeight();
-        if (w == 0 || h == 0) return;
+        double sx = getWidth() / BASE_WIDTH;
+        double sy = getHeight() / BASE_HEIGHT;
+        if (sx == 0 || sy == 0) return;
 
-        double sx = w / BASE_WIDTH;
-        double sy = h / BASE_HEIGHT;
-
-        bgPane.setBounds((int)(0 * sx), (int)(100 * sy), (int)(550 * sx), (int)(1000 * sy));
-
-
-        revalidate();
+        place(lvl1Btn, r1, sx, sy);
+        place(lvl2Btn, r2, sx, sy);
+        place(lvl3Btn, r3, sx, sy);
         repaint();
+    }
+
+    private void place(JButton b, Rectangle r, double sx, double sy) {
+        b.setBounds((int) (r.x * sx), (int) (r.y * sy),
+                    (int) (r.width * sx), (int) (r.height * sy));
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (bg == null) return;
+
+        double sx = getWidth() / BASE_WIDTH;
+        double sy = getHeight() / BASE_HEIGHT;
+
+        // same placement your old label had (40, -100, 1930 x 2100), scaled to the screen
+        g.drawImage(bg,
+                (int) (40 * sx), (int) (-100 * sy),
+                (int) (1930 * sx), (int) (2100 * sy), this);
     }
 
 
