@@ -37,13 +37,13 @@ public class TestPaperData {
         public String getQuestion() {
             return question;
         }
-        
-        
-        
-        
-        
-        
-        
+    }
+
+    // set 1 = first half of the pool, set 2 = second half
+    private static List<QuestionData> half(List<QuestionData> list, int set) {
+        int mid = list.size() / 2;
+        return new ArrayList<>(set == 1 ? list.subList(0, mid)
+                                        : list.subList(mid, list.size()));
     }
 
     public static List<QuestionData> generateQuestions(int level, int set) {
@@ -75,6 +75,11 @@ public class TestPaperData {
             } else {
                 mcList.add(q);
             }
+        }
+
+        if (level != 1) {   // level 1 has one set, so it uses the whole pool
+            tfList = half(tfList, set);
+            mcList = half(mcList, set);
         }
 
         Collections.shuffle(tfList);

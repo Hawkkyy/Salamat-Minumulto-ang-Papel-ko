@@ -1,18 +1,25 @@
 
 package css123proj.salamatminumultoangpapelko.Panels.Levels;
 
+import css123proj.salamatminumultoangpapelko.Panels.Levels.LevelTemplates.LevelUI;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.util.function.Consumer;
 
 public class Level2 extends javax.swing.JPanel {
 
     
-    private Consumer<String> goTo;
+    private final Consumer<String> goTo;
     
     
     public Level2(Consumer<String> goTo) {
         
         this.goTo = goTo;
         initComponents();
+        
+        setPreferredSize(new Dimension(1920, 1080));
+        setLayout(new BorderLayout());
+        add(new LevelUI(2), BorderLayout.CENTER);
     }
 
     
@@ -20,24 +27,11 @@ public class Level2 extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        levelUI1 = new css123proj.salamatminumultoangpapelko.Panels.Levels.LevelTemplates.LevelUI();
-
         setPreferredSize(new java.awt.Dimension(1920, 1080));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(levelUI1, javax.swing.GroupLayout.DEFAULT_SIZE, 1920, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(levelUI1, javax.swing.GroupLayout.DEFAULT_SIZE, 1080, Short.MAX_VALUE)
-        );
+        setLayout(new java.awt.BorderLayout());
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private css123proj.salamatminumultoangpapelko.Panels.Levels.LevelTemplates.LevelUI levelUI1;
     // End of variables declaration//GEN-END:variables
 }

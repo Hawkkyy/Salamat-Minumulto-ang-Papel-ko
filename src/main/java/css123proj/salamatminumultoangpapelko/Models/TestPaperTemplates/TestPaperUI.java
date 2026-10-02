@@ -22,9 +22,11 @@ public class TestPaperUI extends JPanel implements SwitchToolListener{
     private JScrollPane scroll;
     private JPanel questArea, top;
     private final List<QuestionUI> rows = new ArrayList<>();
-    int level = 1,set = 1;
+    int level = 1,set;
     
-    public TestPaperUI() {
+    public TestPaperUI(int level) {
+        
+        this.level = level;
         
         initComponents();
         
@@ -63,7 +65,10 @@ public class TestPaperUI extends JPanel implements SwitchToolListener{
     
         questHolder.setLayout(new BorderLayout());
         questHolder.add(scroll, BorderLayout.CENTER);
-
+        
+        
+        set = new java.util.Random().nextInt(level == 1 ? 1 : 2) + 1;   // 1 = A, 2 = B
+        headerLbl.setText("SET " + (char) ('A' + set - 1));
         List<QuestionData> list = TestPaperData.generateQuestions(level, set);
         
         for (int i = 0; i < list.size(); i++) {

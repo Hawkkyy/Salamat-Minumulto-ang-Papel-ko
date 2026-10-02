@@ -31,7 +31,7 @@ public class LevelUI extends JPanel implements SwitchToolListener {
     private static final double BASE_WIDTH = 1920.0;
     private static final double BASE_HEIGHT = 1080.0;
 
-    public LevelUI() {
+    public LevelUI(int level) {
         setLayout(null); 
 
         try {
@@ -43,7 +43,7 @@ public class LevelUI extends JPanel implements SwitchToolListener {
             e.printStackTrace();
         }
 
-        testPaper = new TestPaperUI();
+        testPaper = new TestPaperUI(level);
         ansKey = new AnswerSheet();
         clock = new Clock();
         corTape = new CorrectionTape();
@@ -105,8 +105,7 @@ public class LevelUI extends JPanel implements SwitchToolListener {
 
        //(x * sx, y * sy, w * sx, h * sy)
         testPaper.setBounds((int)(550 * sx), (int)(100 * sy), (int)(650 * sx), (int)(900 * sy));
-        ansKey.setBounds((int)(0 * sx), (int)(100 * sy), (int)(550 * sx), (int)(1000 * sy));
-        testPaper.setBounds((int)(550 * sx), (int)(100 * sy), (int)(650 * sx), (int)(900 * sy));        
+        ansKey.setBounds((int)(0 * sx), (int)(100 * sy), (int)(550 * sx), (int)(1000 * sy));       
         clock.setBounds((int)(1530 * sx), (int)(30 * sy), (int)(350 * sx), (int)(160 * sy));
         ballpen.setBounds((int)(1300 * sx), (int)(700 * sy), (int)(100 * sx), (int)(200 * sy));
         corTape.setBounds((int)(1400 * sx), (int)(700 * sy), (int)(100 * sx), (int)(200 * sy));
@@ -142,7 +141,20 @@ public void onToolSelected(SwitchTool evt) {
         }
     }
     
-    
+    private Cursor makeCursor(Color color) {
+        int size = 32;
+        java.awt.image.BufferedImage img =
+            new java.awt.image.BufferedImage(size, size, java.awt.image.BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2 = img.createGraphics();
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2.setColor(color);
+        g2.fillOval(4, 4, size - 8, size - 8);
+        g2.setColor(Color.BLACK);
+        g2.drawOval(4, 4, size - 8, size - 8);
+        g2.dispose();
+        
+        return Toolkit.getDefaultToolkit().createCustomCursor(img, new Point(size / 2, size / 2), "tool");
+}
 
 
 
