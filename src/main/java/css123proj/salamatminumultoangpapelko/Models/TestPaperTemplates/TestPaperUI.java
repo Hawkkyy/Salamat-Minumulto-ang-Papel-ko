@@ -10,6 +10,7 @@ import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -19,7 +20,8 @@ public class TestPaperUI extends JPanel implements SwitchToolListener{
     
     private Image testPaperImg;
     private JScrollPane scroll;
-    private JPanel questArea;
+    private JPanel questArea, top;
+    private final List<QuestionUI> rows = new ArrayList<>();
     int level = 1,set = 1;
     
     public TestPaperUI() {
@@ -32,45 +34,60 @@ public class TestPaperUI extends JPanel implements SwitchToolListener{
             e.printStackTrace();
         }
         
-           setOpaque(false);
-    questHolder.setOpaque(false);
-    questHolder.setPreferredSize(new java.awt.Dimension(600, 700));
-    
-    questArea = new JPanel();
-    questArea.setOpaque(false);
-    questArea.setLayout(new BoxLayout(questArea, BoxLayout.Y_AXIS));
-    
-    
-    scroll = new JScrollPane(questArea);
-    scroll.setOpaque(false);
-    scroll.getViewport().setOpaque(false);
-    scroll.setBorder(null);
-    scroll.getVerticalScrollBar().setUnitIncrement(16);
-    scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-    scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-    
-    questHolder.setLayout(new BorderLayout());
-    questHolder.add(scroll, BorderLayout.CENTER);
+        
+        setLayout(new BorderLayout());
+        setOpaque(false);
+        
+        top = new JPanel(new BorderLayout());
+        top.setOpaque(false);
+        top.add(headerLbl, BorderLayout.CENTER);
+        top.add(finishBtn, BorderLayout.SOUTH);
 
-    List<QuestionData> list = TestPaperData.generateQuestions(level, set);
-           for (int i = 0; i < list.size(); i++) {
-            questArea.add(new QuestionUI(i + 1, list.get(i)));
-           }
-           
-    addComponentListener(new java.awt.event.ComponentAdapter() {
-    @Override
-    public void componentResized(java.awt.event.ComponentEvent e) {
-        questHolder.setPreferredSize(new java.awt.Dimension(
-                (int) (getWidth() * 0.87),
-                (int) (getHeight() * 0.72)));
-        revalidate();
-    }
-});  
+        add(top, BorderLayout.NORTH);
+        add(questHolder, BorderLayout.CENTER);
+        
+        questHolder.setOpaque(false);
+    
+        questArea = new ScrollPanel();
+        questArea.setOpaque(false);
+        questArea.setLayout(new BoxLayout(questArea, BoxLayout.Y_AXIS));
+    
+    
+        scroll = new JScrollPane(questArea);
+        scroll.setOpaque(false);
+        scroll.getViewport().setOpaque(false);
+        scroll.setBorder(null);
+        scroll.getVerticalScrollBar().setUnitIncrement(16);
+        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+    
+        questHolder.setLayout(new BorderLayout());
+        questHolder.add(scroll, BorderLayout.CENTER);
+
+        List<QuestionData> list = TestPaperData.generateQuestions(level, set);
+        
+        for (int i = 0; i < list.size(); i++) {
+            QuestionUI row = new QuestionUI(i + 1, list.get(i));
+            row.setOnChange(this::updateFinishButton);
+            rows.add(row);
+            questArea.add(row);
+        }
+    
+    finishBtn.setVisible(false);   // hidden until every row has a ✔ or ✘
             
+    }
+
+
+    private static class ScrollPanel extends JPanel implements Scrollable {
+    public java.awt.Dimension getPreferredScrollableViewportSize() { return getPreferredSize(); }
+    public int getScrollableUnitIncrement(java.awt.Rectangle r, int o, int d) { return 16; }
+    public int getScrollableBlockIncrement(java.awt.Rectangle r, int o, int d) { return r.height; }
+    public boolean getScrollableTracksViewportWidth() { return true; }   // the important one
+    public boolean getScrollableTracksViewportHeight() { return false; }
 }
-
-
-   
+    
+    
+    
     
     @Override
     public void onToolSelected(SwitchTool evt){
@@ -86,23 +103,36 @@ public class TestPaperUI extends JPanel implements SwitchToolListener{
         }
     }
     
+    private void updateFinishButton() {
+    boolean allChecked = true;
+    for (QuestionUI row : rows) {
+        if (!row.isChecked()) {
+            allChecked = false;
+            break;
+        }
+    }
+    finishBtn.setVisible(allChecked);
+    top.revalidate();
+    top.repaint();
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         headerLbl = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        finishBtn = new javax.swing.JToggleButton();
         questHolder = new javax.swing.JPanel();
 
         headerLbl.setText("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
-        jToggleButton1.setText("Finished Checking!");
+        finishBtn.setText("Finished Checking!");
 
         javax.swing.GroupLayout questHolderLayout = new javax.swing.GroupLayout(questHolder);
         questHolder.setLayout(questHolderLayout);
         questHolderLayout.setHorizontalGroup(
             questHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 566, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         questHolderLayout.setVerticalGroup(
             questHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,34 +145,35 @@ public class TestPaperUI extends JPanel implements SwitchToolListener{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(headerLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE)
+                .addComponent(headerLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(questHolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(questHolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(199, 199, 199)
-                        .addComponent(jToggleButton1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(finishBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(188, 188, 188)))
+                .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(headerLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(headerLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jToggleButton1)
+                .addComponent(finishBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(questHolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addComponent(questHolder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(74, 74, 74))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton finishBtn;
     private javax.swing.JLabel headerLbl;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JPanel questHolder;
     // End of variables declaration//GEN-END:variables
 }

@@ -118,9 +118,21 @@ public class LevelUI extends JPanel implements SwitchToolListener {
     }
 
     @Override
-    public void onToolSelected(SwitchTool evt) {
-        System.out.println("Switched to " + evt.getSelectedTool());
+public void onToolSelected(SwitchTool evt) {
+    String t = String.valueOf(evt.getSelectedTool()).toLowerCase();
+    System.out.println("Switched to " + t);
+
+    if (t.contains("pen")) {
+        QuestionUI.currentTool = QuestionUI.Tool.PEN;
+        setCursor(makeCursor(new Color(0, 160, 0)));      // green dot
+    } else if (t.contains("tape")) {
+        QuestionUI.currentTool = QuestionUI.Tool.TAPE;
+        setCursor(makeCursor(new Color(240, 240, 230)));  // pale dot
+    } else {
+        QuestionUI.currentTool = QuestionUI.Tool.NONE;
+        setCursor(Cursor.getDefaultCursor());
     }
+}
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -129,6 +141,8 @@ public class LevelUI extends JPanel implements SwitchToolListener {
             g.drawImage(levelImg, 0, 0, getWidth(), getHeight(), this);
         }
     }
+    
+    
 
 
 
