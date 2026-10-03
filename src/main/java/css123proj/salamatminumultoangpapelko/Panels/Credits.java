@@ -14,7 +14,7 @@ public class Credits extends javax.swing.JPanel {
         
         initComponents();
         
-        setBackground(new Color(27, 25, 51));
+        setBackground(new Color(25, 25, 50));
         setLayout(new GridBagLayout());
         
         JPanel centerPanel = new JPanel();

@@ -20,7 +20,7 @@ public class GameOver extends JPanel {
 
     public GameOver(Consumer<String> goTo) {
         setLayout(new GridBagLayout());
-        setBackground(new Color(30, 30, 30));
+        setBackground(new Color(25, 25, 50));
         
         reactionPanel.setBackground(new Color(40, 40, 50));
         reactionPanel.setPreferredSize(new Dimension(500, 220));
