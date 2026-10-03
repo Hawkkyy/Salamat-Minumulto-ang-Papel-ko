@@ -51,7 +51,7 @@ public class Credits extends javax.swing.JPanel {
         role3.setFont(roleFont); role3.setForeground(new Color(190, 195, 210)); role3.setAlignmentX(Component.CENTER_ALIGNMENT);
         
         JLabel ackHeader = new JLabel("SPECIAL THANKS");
-        ackHeader.setFont(new Font("SansSerif", Font.BOLD, 30));
+        ackHeader.setFont(new Font("SansSerif", Font.BOLD, 35));
         ackHeader.setForeground(new Color(160, 195, 255));
         ackHeader.setAlignmentX(Component.CENTER_ALIGNMENT);
         
