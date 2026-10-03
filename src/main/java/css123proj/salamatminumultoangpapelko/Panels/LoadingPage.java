@@ -4,7 +4,9 @@
  */
 package css123proj.salamatminumultoangpapelko.Panels;
 
+import java.awt.*;
 import java.util.function.Consumer;
+import javax.swing.*;
 
 /**
  *
@@ -17,14 +19,37 @@ public class LoadingPage extends javax.swing.JPanel {
      */
     
     private Consumer<String> goTo;
+    private JLabel statusLabel;
     
     public LoadingPage(Consumer<String> goTo) {
         
         this.goTo = goTo;
         initComponents();
         
+        setBackground(new Color(27, 25, 51));
+        setLayout(new GridBagLayout());
+        
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
+        centerPanel.setOpaque(false);
+        
+        JLabel titleLabel = new JLabel("Loading...");
+        titleLabel.setFont(new Font("SansSerif", Font.BOLD, 48));
+        titleLabel.setForeground(Color.WHITE);
+        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
+        statusLabel = new JLabel("Please wait while papers are being gathered...");
+        statusLabel.setFont(new Font("SansSerif", Font.PLAIN, 20));
+        statusLabel.setForeground(new Color(190, 195, 210));
+        statusLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
+        centerPanel.add(titleLabel);
+        centerPanel.add(Box.createVerticalStrut(20));
+        centerPanel.add(statusLabel);
+        
+        add(centerPanel);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
