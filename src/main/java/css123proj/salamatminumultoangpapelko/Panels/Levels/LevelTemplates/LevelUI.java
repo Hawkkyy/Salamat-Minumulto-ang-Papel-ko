@@ -8,6 +8,7 @@ import css123proj.salamatminumultoangpapelko.Panels.AudioSettings;
 import css123proj.salamatminumultoangpapelko.Panels.Levels.CustomEvents.SwitchTool;
 import css123proj.salamatminumultoangpapelko.Panels.Levels.CustomEvents.SwitchToolListener;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
@@ -91,6 +92,7 @@ private final JPanel dim = new JPanel() {
         popMenu.add(quit);
 
         menu.addActionListener(e -> {
+            AudioSettings.playSfx("Confirm.wav");
             popMenu.show(menu, -(popMenu.getPreferredSize().width - menu.getWidth()), menu.getHeight());
         });
         
@@ -99,7 +101,7 @@ private final JPanel dim = new JPanel() {
     public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent e) { clock.resume(); }
     public void popupMenuCanceled(javax.swing.event.PopupMenuEvent e) { clock.resume(); }
 });
-
+        
 resume.addActionListener(e -> { });
 inst.addActionListener(e -> {
     clock.pause();

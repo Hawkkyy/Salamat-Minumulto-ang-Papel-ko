@@ -165,7 +165,7 @@ public class Calendar extends JPanel {
 
     private void lvl1BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lvl1BtnActionPerformed
         // TODO add your handling code here:
-        
+        AudioSettings.playSfx("Confirm.wav");
         System.out.println("Redirecting to Level 1...");
         goTo.accept("Level 1");
         
@@ -173,14 +173,14 @@ public class Calendar extends JPanel {
 
     private void lvl2BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lvl2BtnActionPerformed
         // TODO add your handling code here:
-        
+        AudioSettings.playSfx("Confirm.wav");
         System.out.println("Redirecting to Level 2...");
         goTo.accept("Level 2");
     }//GEN-LAST:event_lvl2BtnActionPerformed
 
     private void lvl3BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lvl3BtnActionPerformed
         // TODO add your handling code here:
-        
+        AudioSettings.playSfx("Confirm.wav");
         System.out.println("Redirecting to Level 3...");
         goTo.accept("Level 3");
         
