@@ -4,6 +4,7 @@
  */
 package css123proj.salamatminumultoangpapelko.Panels;
 
+import css123proj.salamatminumultoangpapelko.Panels.Levels.Instructions;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.function.Consumer;
@@ -116,6 +117,7 @@ public class TitleScreen extends javax.swing.JPanel {
 
     private void instBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_instBtnActionPerformed
         // TODO add your handling code here:
+        Instructions.showInstructions();
     }//GEN-LAST:event_instBtnActionPerformed
     
     
