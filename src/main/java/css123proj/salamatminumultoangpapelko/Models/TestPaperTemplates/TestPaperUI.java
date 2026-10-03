@@ -7,6 +7,7 @@ import css123proj.salamatminumultoangpapelko.Models.TestPaperTemplates.TestPaper
 import css123proj.salamatminumultoangpapelko.Models.TestPaperTemplates.TestPaperData.QuestionData;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.IOException;
@@ -29,6 +30,8 @@ public class TestPaperUI extends JPanel implements SwitchToolListener{
     private int papersDone = 0;
     private int maxScore = 0;
     private java.util.function.BiConsumer<Integer, Boolean> onFinished;   // (totalScore, levelOver)
+    private final List<List<QuestionData>> sets = new ArrayList<>();   // fixed question sets for this level run
+    private double scale = 1.0;
     
     private boolean paperActive = true;
     
@@ -42,18 +45,17 @@ public void reset() {
     papersDone = 0;
     paperActive = true;
     setVisible(true);
+    buildSets();
     loadPaper();
 }
 
     public int getPapersPerLevel() { return PAPERS_PER_LEVEL; }
 
-/** Papers still sitting in the stack (the one on the desk is not counted). */
 public int getPapersLeftInStack() {
     int taken = papersDone + (paperActive ? 1 : 0);
     return PAPERS_PER_LEVEL - taken;
 }
 
-/** Takes the next paper from the stack. Returns false if one is already on the desk or the stack is empty. */
 public boolean nextPaper() {
     if (paperActive || papersDone >= PAPERS_PER_LEVEL) return false;
     loadPaper();
@@ -126,7 +128,12 @@ public boolean nextPaper() {
     if (onFinished != null) onFinished.accept(totalScore, levelOver);
 });
             
-        
+        addComponentListener(new ComponentAdapter() {
+    @Override
+    public void componentResized(ComponentEvent e) {
+        applyScale();
+    }
+});
         
         
         
@@ -173,15 +180,21 @@ public boolean nextPaper() {
     }
     
     public void loadPaper() {
+    if (sets.isEmpty()) buildSets();
     questArea.removeAll();
     rows.clear();
 
-    set = new java.util.Random().nextInt(level == 1 ? 1 : 2) + 1;   // 1 = A, 2 = B
+    java.util.Random rnd = new java.util.Random();
+    set = rnd.nextInt(sets.size()) + 1;                      // 1 = A, 2 = B
     headerLbl.setText("SET " + (char) ('A' + set - 1));
 
-    List<QuestionData> list = TestPaperData.generateQuestions(level, set);
+    // 30% of papers have nothing pre-marked; the rest have 15-35% of their items pre-marked
+    int preMark = rnd.nextInt(100) < 30 ? 0 : 15 + rnd.nextInt(21);
+
+    List<QuestionData> list = sets.get(set - 1);
     for (int i = 0; i < list.size(); i++) {
-        QuestionUI row = new QuestionUI(i + 1, list.get(i));
+        QuestionUI row = new QuestionUI(i + 1, list.get(i), preMark);
+        row.setScale(scale);
         row.setOnChange(this::updateFinishButton);
         rows.add(row);
         questArea.add(row);
@@ -191,18 +204,45 @@ public boolean nextPaper() {
     questArea.revalidate();
     questArea.repaint();
     top.revalidate();
-    }
+    SwingUtilities.invokeLater(() -> scroll.getVerticalScrollBar().setValue(0));   // start at the top
+}
     
-    public List<String> getAnswerKey() {
-        List<String> key = new ArrayList<>();
-        for (int i = 0; i < rows.size(); i++) {
-            key.add((i + 1) + ". " + rows.get(i).getCorrectLetter());
-        }
-        return key;
-    }
+    
     
     public int getSet() { return set; }
 
+    
+    private void buildSets() {
+    sets.clear();
+    int count = (level == 1) ? 1 : 2;               // level 1 has one set, levels 2 and 3 have two
+    for (int s = 1; s <= count; s++) {
+        sets.add(TestPaperData.generateQuestions(level, s));
+    }
+}
+
+/** Answer lines for every set, e.g. [["1. A", "2. B", ...], ["1. B", ...]]. */
+public List<List<String>> getAllAnswerKeys() {
+    List<List<String>> all = new ArrayList<>();
+    for (List<QuestionData> qs : sets) {
+        List<String> key = new ArrayList<>();
+        for (int i = 0; i < qs.size(); i++) {
+            key.add((i + 1) + ". " + qs.get(i).answer.replace(".", "").trim());
+        }
+        all.add(key);
+    }
+    return all;
+}
+
+private void applyScale() {
+    double s = Math.min(getWidth() / 650.0, getHeight() / 900.0);
+    if (s <= 0 || Math.abs(s - scale) < 0.01) return;
+    scale = s;
+    headerLbl.setFont(headerLbl.getFont().deriveFont(Font.BOLD, (float) (22 * s)));
+    finishBtn.setFont(finishBtn.getFont().deriveFont(Font.BOLD, (float) (16 * s)));
+    for (QuestionUI row : rows) row.setScale(s);
+    questArea.revalidate();
+    questArea.repaint();
+}
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

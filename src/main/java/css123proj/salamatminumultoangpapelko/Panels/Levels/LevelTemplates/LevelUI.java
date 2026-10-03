@@ -153,14 +153,14 @@ ansKey.addMouseListener(new MouseAdapter() {   // click the small sheet on the l
     }
 });
 
-        ansKey.setKey(testPaper.getSet(), testPaper.getAnswerKey());
+        refreshKey();
 
         papStack.addMouseListener(new MouseAdapter() {
     @Override
     public void mouseClicked(MouseEvent e) {
         if (!levelStarted || ansExpanded) return;
         if (testPaper.nextPaper()) {          // does nothing while a paper is still on the desk
-            ansKey.setKey(testPaper.getSet(), testPaper.getAnswerKey());
+            refreshKey();
             updateStack();
             AudioSettings.playSfx("paper.wav");
         }
@@ -206,7 +206,7 @@ addHierarchyListener(e -> {
     
     private void resetLevel() {
     testPaper.reset();
-    ansKey.setKey(testPaper.getSet(), testPaper.getAnswerKey());
+    refreshKey();
     setHeldTool(QuestionUI.Tool.NONE);
     updateStack();
 
@@ -235,6 +235,10 @@ private void confirmAnswerSheet() {
     }
     setAnswerSheetOpen(false);
 }
+
+private void refreshKey() {
+    ansKey.setKeys(testPaper.getAllAnswerKeys(), testPaper.getSet());
+}
     
 
     private void repositionElements() {
@@ -255,6 +259,8 @@ if (ansExpanded) {
 } else {
     ansKey.setBounds((int)(0 * sx), (int)(100 * sy), (int)(550 * sx), (int)(950 * sy));
 }
+        ansKey.setScale(Math.min(sx, sy));
+        
         clock.setBounds((int)(1530 * sx), (int)(30 * sy), (int)(350 * sx), (int)(160 * sy));
         ballpen.setBounds((int)(1300 * sx), (int)(700 * sy), (int)(100 * sx), (int)(200 * sy));
         corTape.setBounds((int)(1400 * sx), (int)(700 * sy), (int)(100 * sx), (int)(200 * sy));

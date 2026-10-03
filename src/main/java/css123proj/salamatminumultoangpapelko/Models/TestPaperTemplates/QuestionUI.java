@@ -36,13 +36,14 @@ public class QuestionUI extends javax.swing.JPanel {
     
     private static final Font HAND_FONT = new Font("Serif", Font.ITALIC, 26);
     
-    private static final int PREMARK_CORRECT = 40;   // % of items already graded correctly
-    private static final int PREMARK_WRONG   = 30;   // % of items already graded wrongly (rest are blank)
-    
     private final JLabel studentLbl = new JLabel("", SwingConstants.CENTER);        
 
+    private double scale = 1.0;
+
+
     
-    public QuestionUI(int num, QuestionData q) {
+    
+    public QuestionUI(int num, QuestionData q, int preMarkPercent) { 
     
         this.data = q;
         
@@ -84,6 +85,8 @@ public class QuestionUI extends javax.swing.JPanel {
         choices.add(choice("B. " + q.b, cFont));
         if (q.c != null) choices.add(choice("C. " + q.c, cFont));
         if (q.d != null) choices.add(choice("D. " + q.d, cFont));
+        if (q.e != null) letters.add("E.");        // next to the C and D lines
+        if (q.e != null) choices.add(choice("E. " + q.e, cFont));   // next to the C and D lines
 
         JPanel center = new JPanel(new BorderLayout());
         center.setOpaque(false);
@@ -133,14 +136,26 @@ public class QuestionUI extends javax.swing.JPanel {
             }
         });
         
-        int roll = rnd.nextInt(100);
-if (roll < PREMARK_CORRECT) {
-    setMark(studentCorrect ? Mark.CHECK : Mark.X);          // the "teacher" graded it right
-} else if (roll < PREMARK_CORRECT + PREMARK_WRONG) {
-    setMark(studentCorrect ? Mark.X : Mark.CHECK);          // the "teacher" made a mistake
-}                                                           // otherwise left blank
+if (rnd.nextInt(100) < preMarkPercent) {
+    boolean markedRight = rnd.nextInt(100) < 55;            // most pre-marks are right, some are mistakes
+    setMark(markedRight == studentCorrect ? Mark.CHECK : Mark.X);
+}                                                      // otherwise left blank
         
     }
+    
+    public void setScale(double s) {
+    scale = s;
+    questText.setFont(new Font("Serif", Font.PLAIN, Math.max(8, (int) Math.round(16 * s))));
+    Font cf = new Font("Serif", Font.BOLD, Math.max(8, (int) Math.round(15 * s)));
+    for (Component c : choices.getComponents()) c.setFont(cf);
+    studentLbl.setFont(new Font("Serif", Font.ITALIC, Math.max(10, (int) Math.round(26 * s))));
+    markLbl.setFont(new Font("Dialog", Font.BOLD, Math.max(12, (int) Math.round(28 * s))));
+    markLbl.setPreferredSize(new Dimension((int) (40 * s), (int) (40 * s)));
+    choices.setBorder(BorderFactory.createEmptyBorder(0, (int) (20 * s), 0, 0));
+    studentLbl.setBorder(BorderFactory.createEmptyBorder(0, (int) (40 * s), 0, 0));
+    setBorder(BorderFactory.createEmptyBorder((int) (6 * s), (int) (6 * s), (int) (6 * s), (int) (6 * s)));
+    revalidate();
+}
 
     private void onClick(MouseEvent e) {
     boolean left  = SwingUtilities.isLeftMouseButton(e);
@@ -228,10 +243,10 @@ if (roll < PREMARK_CORRECT) {
     public Dimension getPreferredSize() {
         Dimension d = super.getPreferredSize();
         if (getWidth() > 0 && questText != null) {
-           int textWidth = getWidth() - 40 - 10 - 12; 
+            int textWidth = getWidth() - (int) (40 * scale) - 10 - 12;
             questText.setSize(textWidth, Short.MAX_VALUE);
             int textHeight = questText.getPreferredSize().height;
-            d.height = textHeight + Math.max(choices.getPreferredSize().height, 40) + 12;
+            d.height = textHeight + Math.max(choices.getPreferredSize().height, (int) (40 * scale)) + 12;
         }
         return d;
     }

@@ -32,6 +32,7 @@ public class TestPaperData {
         @SerializedName("B.") public String b;
         @SerializedName("C.") public String c;
         @SerializedName("D.") public String d;
+        @SerializedName("E.") public String e;
         public String answer;
 
         public String getQuestion() {
