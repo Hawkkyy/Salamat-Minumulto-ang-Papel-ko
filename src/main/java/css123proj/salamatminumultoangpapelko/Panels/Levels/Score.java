@@ -23,22 +23,52 @@ public class Score extends JPanel {
         setLayout(new GridBagLayout());
         setBackground(new Color(30, 30, 30));
 
-        titleLbl.setFont(new Font("SansSerif", Font.BOLD, 56));
-        scoreLbl.setFont(new Font("SansSerif", Font.PLAIN, 40));
-        percentLbl.setFont(new Font("SansSerif", Font.PLAIN, 28));
-        for (JLabel l : new JLabel[]{titleLbl, scoreLbl, percentLbl}) l.setForeground(Color.WHITE);
+        JPanel cardPanel = new JPanel(new GridBagLayout());
+        cardPanel.setBackground(new Color(30, 35, 40));
+        cardPanel.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(230, 230, 230), 2, true),
+                BorderFactory.createEmptyBorder(30, 70, 30, 70)
+        ));
+
+        titleLbl.setFont(new Font("SansSerif", Font.BOLD, 60));
+        scoreLbl.setFont(new Font("SansSerif", Font.BOLD, 30));
+        percentLbl.setFont(new Font("SansSerif", Font.BOLD, 50));
+
+        titleLbl.setForeground(new Color(240, 240, 240));
+        scoreLbl.setForeground(new Color(180, 185, 190));
+
+        continueBtn.setFont(new Font("SansSerif", Font.BOLD, 20));
+        continueBtn.setForeground(Color.WHITE);
+        continueBtn.setBackground(new Color(60, 130, 250));
+        continueBtn.setFocusPainted(false);
+        continueBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        continueBtn.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(40, 100, 240), 2, true),
+                BorderFactory.createEmptyBorder(10, 35, 10, 35)
+        ));
 
         continueBtn.addActionListener(e -> goTo.accept(passed ? WON_SCREEN : OVER_SCREEN));
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
-        gbc.insets = new Insets(12, 12, 12, 12);
-        add(titleLbl, gbc);
-        add(scoreLbl, gbc);
-        add(percentLbl, gbc);
-        add(continueBtn, gbc);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.anchor = GridBagConstraints.CENTER;
 
-        // GameFrame builds this at startup, so compute when it is shown, not in the constructor
+        gbc.insets = new Insets(0, 0, 10, 0);
+        cardPanel.add(titleLbl, gbc);
+
+        gbc.insets = new Insets(10, 0, 5, 0);
+        cardPanel.add(scoreLbl, gbc);
+
+        gbc.insets = new Insets(0, 0, 25, 0);
+        cardPanel.add(percentLbl, gbc);
+
+        gbc.insets = new Insets(10, 0, 0, 0);
+        gbc.fill = GridBagConstraints.NONE;
+        cardPanel.add(continueBtn, gbc);
+
+        add(cardPanel);
+
         addHierarchyListener(e -> {
             if ((e.getChangeFlags() & HierarchyEvent.SHOWING_CHANGED) != 0 && isShowing()) {
                 int pct = GameResult.maxScore == 0 ? 0
@@ -49,6 +79,12 @@ public class Score extends JPanel {
                 titleLbl.setText(GameResult.timedOut ? "Time's Up!" : "Level " + GameResult.level + " Complete");
                 scoreLbl.setText("Score: " + GameResult.score + " / " + GameResult.maxScore);
                 percentLbl.setText(pct + "%");
+
+                if (passed) {
+                    percentLbl.setForeground(new Color(75, 225, 130));
+                } else {
+                    percentLbl.setForeground(new Color(250, 115, 110));
+                }
             }
         });
     }
