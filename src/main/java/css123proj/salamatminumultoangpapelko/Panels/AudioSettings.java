@@ -28,6 +28,23 @@ private static Mixer.Info pickMixer(DataLine.Info info) {
     return null;   // nothing matched: use Java's default
 }
 
+    private static volatile float musicVolume = 0.4f;   // 0.0 = silent, 1.0 = full volume
+
+public static void setMusicVolume(float v) { musicVolume = Math.max(0f, Math.min(1f, v)); }
+public static float getMusicVolume()       { return musicVolume; }
+
+/** Scales 16-bit PCM samples in place. */
+private static void applyVolume(byte[] buf, int len, boolean bigEndian, float vol) {
+    if (vol >= 1f) return;
+    for (int i = 0; i + 1 < len; i += 2) {
+        short s = bigEndian ? (short) ((buf[i] << 8) | (buf[i + 1] & 0xFF))
+                            : (short) ((buf[i + 1] << 8) | (buf[i] & 0xFF));
+        s = (short) (s * vol);
+        if (bigEndian) { buf[i] = (byte) (s >> 8); buf[i + 1] = (byte) s; }
+        else           { buf[i] = (byte) s;        buf[i + 1] = (byte) (s >> 8); }
+    }
+}
+
     private static boolean musicOn = true;
     private static boolean sfxOn = true;
     private static String currentMusic;    // the song that SHOULD be playing
@@ -138,6 +155,7 @@ new Thread(() -> {
             try (AudioInputStream in = AudioSystem.getAudioInputStream(url)) {
                 int n;
                 while (!track.stop && (n = in.read(buf, 0, buf.length)) != -1) {
+                    if (fmt.getSampleSizeInBits() == 16) applyVolume(buf, n, fmt.isBigEndian(), musicVolume);
                     line.write(buf, 0, n);
                 }
             }

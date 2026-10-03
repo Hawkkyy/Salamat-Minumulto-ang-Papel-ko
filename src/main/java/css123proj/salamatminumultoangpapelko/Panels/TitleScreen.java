@@ -11,16 +11,13 @@ import java.util.function.Consumer;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-/**
- *
- * @author hawk
- */
 public class TitleScreen extends javax.swing.JPanel {
 
     
     private Consumer<String> goTo;
     
     public TitleScreen(Consumer<String> goTo) {
+        
         this.goTo = goTo;
         
         add(new JLabel("This is the Title Screen"));
@@ -38,6 +35,7 @@ public class TitleScreen extends javax.swing.JPanel {
         });
         
         initComponents();
+        
         
         
     }
