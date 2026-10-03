@@ -262,8 +262,8 @@ if (ansExpanded) {
         ansKey.setScale(Math.min(sx, sy));
         
         clock.setBounds((int)(1530 * sx), (int)(30 * sy), (int)(350 * sx), (int)(160 * sy));
-        ballpen.setBounds((int)(1300 * sx), (int)(700 * sy), (int)(100 * sx), (int)(200 * sy));
-        corTape.setBounds((int)(1400 * sx), (int)(700 * sy), (int)(100 * sx), (int)(200 * sy));
+        ballpen.setBounds((int)(1100 * sx), (int)(725 * sy), (int)(300 * sx), (int)(300 * sy));
+        corTape.setBounds((int)(1300 * sx), (int)(725 * sy), (int)(200 * sx), (int)(300 * sy));
         papStack.setBounds((int)(1500 * sx), (int)(500 * sy), (int)(400 * sx), (int)(550 * sy));
         menu.setBounds((int)(1625 * sx), (int)(30 * sy), (int)(200 * sx), (int)(50 * sy));
 

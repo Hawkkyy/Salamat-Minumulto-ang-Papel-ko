@@ -41,7 +41,7 @@ public class OpeningCutscene extends javax.swing.JPanel {
 
     CardLayout showScene = new CardLayout();
     JPanel sceneBox = new JPanel(showScene);
-    sceneBox.add(new SceneImage("/Art/Cutscenes/Opening/Cutscene1.jpg"), "SCENE_1");
+    sceneBox.add(new SceneImage("/Art/Cutscenes/Opening/Cutscene1.png"), "SCENE_1");
     sceneBox.add(new SceneImage("/Art/Cutscenes/Opening/Cutscene2.png"), "SCENE_2");
 
     // top-left: Skip
