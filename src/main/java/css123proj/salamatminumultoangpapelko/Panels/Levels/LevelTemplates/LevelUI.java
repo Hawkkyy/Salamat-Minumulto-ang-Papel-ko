@@ -162,7 +162,7 @@ ansKey.addMouseListener(new MouseAdapter() {   // click the small sheet on the l
         if (testPaper.nextPaper()) {          // does nothing while a paper is still on the desk
             ansKey.setKey(testPaper.getSet(), testPaper.getAnswerKey());
             updateStack();
-            AudioSettings.playSfx("/SFX/paper.wav");
+            AudioSettings.playSfx("paper.wav");
         }
     }
 });
@@ -275,6 +275,7 @@ public void onToolSelected(SwitchTool evt) {
 
     if (QuestionUI.currentTool == clicked) {            // already holding it -> put it back
         setHeldTool(QuestionUI.Tool.NONE);
+        AudioSettings.playSfx("putdown.wav");
     } else if (QuestionUI.currentTool != QuestionUI.Tool.NONE) {   // holding the other one
         clock.pause();
         JOptionPane.showMessageDialog(this, "I can only hold one item at a time!\n- Ghost",
@@ -282,11 +283,11 @@ public void onToolSelected(SwitchTool evt) {
         clock.resume();
     } else {
         setHeldTool(clicked);
+        AudioSettings.playSfx("pickup.wav");
     }
 }
 
-private void setHeldTool(QuestionUI.Tool tool) {
-    AudioSettings.playSfx(tool == QuestionUI.Tool.NONE ? "/SFX/putdown.wav" : "/SFX/pickup.wav");
+    private void setHeldTool(QuestionUI.Tool tool) {
     QuestionUI.currentTool = tool;
     ballpen.setHeld(tool == QuestionUI.Tool.PEN);
     corTape.setHeld(tool == QuestionUI.Tool.TAPE);

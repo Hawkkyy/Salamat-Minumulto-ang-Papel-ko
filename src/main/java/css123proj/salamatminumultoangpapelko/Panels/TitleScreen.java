@@ -104,23 +104,24 @@ public class TitleScreen extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void setBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setBtnActionPerformed
+        AudioSettings.playMusic("/Music/BGM/GameOverMusic.wav");
         goTo.accept("Settings");
     }//GEN-LAST:event_setBtnActionPerformed
 
     private void opeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opeBtnActionPerformed
-        // TODO add your handling code here:
+        AudioSettings.playMusic("/Music/BGM/GameOverMusic.wav");
         goTo.accept("Opening Cutscene");
 
     }//GEN-LAST:event_opeBtnActionPerformed
 
     private void instBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_instBtnActionPerformed
-        // TODO add your handling code here:
+        AudioSettings.playMusic("/Music/BGM/GameOverMusic.wav");
         Instructions.showInstructions();
     }//GEN-LAST:event_instBtnActionPerformed
     
     
     private void playBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playBtnActionPerformed
-        // TODO add your handling code here:
+        AudioSettings.playMusic("/Music/BGM/GameOverMusic.wav");
         goTo.accept("Calendar");
         
     }//GEN-LAST:event_playBtnActionPerformed

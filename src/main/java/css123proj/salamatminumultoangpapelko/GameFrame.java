@@ -55,7 +55,7 @@ public class GameFrame extends javax.swing.JFrame {
     if (ev instanceof java.awt.event.MouseEvent me
             && me.getID() == java.awt.event.MouseEvent.MOUSE_PRESSED
             && me.getSource() instanceof AbstractButton) {
-        AudioSettings.playSfx("/SFX/click.wav");
+        AudioSettings.playSfx("/SFX/Confirm.wav");
     }
 }, AWTEvent.MOUSE_EVENT_MASK);
         

@@ -11,6 +11,7 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineEvent;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.Mixer;
+import javax.swing.AbstractButton;
 
 public class AudioSettings {
     
@@ -52,6 +53,8 @@ private static void applyVolume(byte[] buf, int len, boolean bigEndian, float vo
     private static class Track { volatile boolean stop; }
     private static Track musicTrack;      // music thread only
 
+    private static final String SFX_DIR = "/Music/SFX/";
+    
     // all audio work happens on these threads, never on the window thread
     private static final ExecutorService MUSIC = Executors.newSingleThreadExecutor(r -> daemon(r, "music"));
     private static final ExecutorService SFX   = Executors.newSingleThreadExecutor(r -> daemon(r, "sfx"));
@@ -86,8 +89,9 @@ private static void applyVolume(byte[] buf, int len, boolean bigEndian, float vo
         MUSIC.submit(AudioSettings::stopClip);
     }
 
-    public static void playSfx(String path) {
+    public static void playSfx(String fileName) {
         if (!sfxOn) return;
+        String path = SFX_DIR + fileName;
         SFX.submit(() -> {
             try (AudioInputStream in = AudioSystem.getAudioInputStream(AudioSettings.class.getResource(path))) {
                 Mixer.Info mi = pickMixer(new DataLine.Info(Clip.class, in.getFormat()));
@@ -102,11 +106,25 @@ private static void applyVolume(byte[] buf, int len, boolean bigEndian, float vo
             }
         });
     }
+    
+    /** Plays Back.wav for "go back" buttons and Confirm.wav for everything else. */
+public static void playButtonSfx(AbstractButton b) {
+    Object tag = b.getClientProperty("sfx");          // optional manual override: "back" or "confirm"
+    boolean back;
+    if (tag != null) {
+        back = "back".equals(tag);
+    } else {
+        String t = (b.getText() == null) ? "" : b.getText().trim().toLowerCase();
+        back = t.startsWith("back") || t.startsWith("return") || t.startsWith("previous")
+            || t.equals("<") || t.equals("close") || t.equals("cancel") || t.equals("no");
+    }
+    playSfx(back ? "Back.wav" : "Confirm.wav");
+}
 
     // ---- music thread only ----
 
     private static void startMusic(String path) {
-    if (path.equals(playingMusic) && musicTrack != null) return;   // already playing this song
+    if (path.equals(playingMusic) && musicTrack != null) return;
     stopClip();
     URL url = AudioSettings.class.getResource(path);
     if (url == null) {
