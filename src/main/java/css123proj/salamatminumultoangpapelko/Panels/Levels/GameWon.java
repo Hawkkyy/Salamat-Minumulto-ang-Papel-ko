@@ -21,8 +21,7 @@ public class GameWon extends JPanel {
         setLayout(new GridBagLayout());
         setBackground(new Color(30, 30, 30));
         
-        // Styling Panel 1 (Image Placeholder Container)
-        reactionPanel.setBackground(new Color(36, 40, 50));
+        reactionPanel.setBackground(new Color(40, 40, 50));
         reactionPanel.setPreferredSize(new Dimension(500, 220));
         reactionPanel.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(75, 225, 130), 2, true),
@@ -38,7 +37,7 @@ public class GameWon extends JPanel {
         gbcReaction.anchor = GridBagConstraints.CENTER;
         reactionPanel.add(reactionImageLbl, gbcReaction);
         
-        summaryPanel.setBackground(new Color(36, 40, 50));
+        summaryPanel.setBackground(new Color(40, 40, 50));
         summaryPanel.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(230, 230, 230), 1, true),
                 BorderFactory.createEmptyBorder(25, 40, 25, 40)

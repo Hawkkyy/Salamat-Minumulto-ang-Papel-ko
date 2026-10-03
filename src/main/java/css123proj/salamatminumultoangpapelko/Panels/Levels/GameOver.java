@@ -7,12 +7,10 @@ import java.util.function.Consumer;
 import javax.swing.*;
 
 public class GameOver extends JPanel {
-
-    // Panel 1: Image Container (Professor & Ghost Reaction)
+    
     private final JPanel reactionPanel = new JPanel(new GridBagLayout());
     private final JLabel reactionImageLbl = new JLabel("[ Reaction Image Placeholder ]", SwingConstants.CENTER);
-
-    // Panel 2: Status & Navigation Controls
+    
     private final JPanel summaryPanel = new JPanel(new GridBagLayout());
     private final JLabel statusLbl = new JLabel("", SwingConstants.CENTER);
     private final JLabel commentLbl = new JLabel("", SwingConstants.CENTER);
@@ -24,7 +22,7 @@ public class GameOver extends JPanel {
         setLayout(new GridBagLayout());
         setBackground(new Color(30, 30, 30));
         
-        reactionPanel.setBackground(new Color(36, 40, 50));
+        reactionPanel.setBackground(new Color(40, 40, 50));
         reactionPanel.setPreferredSize(new Dimension(500, 220));
         reactionPanel.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(250, 115, 110), 2, true),
@@ -40,7 +38,7 @@ public class GameOver extends JPanel {
         gbcReaction.anchor = GridBagConstraints.CENTER;
         reactionPanel.add(reactionImageLbl, gbcReaction);
         
-        summaryPanel.setBackground(new Color(36, 40, 50));
+        summaryPanel.setBackground(new Color(40, 40, 50));
         summaryPanel.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(230, 230, 230), 1, true),
                 BorderFactory.createEmptyBorder(25, 40, 25, 40)
