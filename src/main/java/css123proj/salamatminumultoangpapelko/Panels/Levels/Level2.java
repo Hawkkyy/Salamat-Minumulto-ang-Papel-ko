@@ -8,19 +8,12 @@ import java.util.function.Consumer;
 
 public class Level2 extends javax.swing.JPanel {
 
-    
-    private final Consumer<String> goTo;
-    
-    
     public Level2(Consumer<String> goTo) {
-        
-        this.goTo = goTo;
-        initComponents();
-        
         setPreferredSize(new Dimension(1920, 1080));
         setLayout(new BorderLayout());
-        add(new LevelUI(2), BorderLayout.CENTER);
+        add(new LevelUI(2, goTo), BorderLayout.CENTER);  
     }
+
 
     
     @SuppressWarnings("unchecked")

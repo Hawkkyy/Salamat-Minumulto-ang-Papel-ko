@@ -7,15 +7,12 @@ import java.util.function.Consumer;
 
 public class Level3 extends javax.swing.JPanel {
 
-    private final Consumer<String> goTo;
-
     public Level3(Consumer<String> goTo) {
-        this.goTo = goTo;
-
         setPreferredSize(new Dimension(1920, 1080));
         setLayout(new BorderLayout());
-        add(new LevelUI(3), BorderLayout.CENTER);
+        add(new LevelUI(3, goTo), BorderLayout.CENTER);   
     }
+
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

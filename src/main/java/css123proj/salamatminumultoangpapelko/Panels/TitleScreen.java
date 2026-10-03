@@ -105,7 +105,7 @@ public class TitleScreen extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void setBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setBtnActionPerformed
-        // TODO add your handling code here:
+        goTo.accept("Settings");
     }//GEN-LAST:event_setBtnActionPerformed
 
     private void opeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opeBtnActionPerformed
@@ -117,7 +117,8 @@ public class TitleScreen extends javax.swing.JPanel {
     private void instBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_instBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_instBtnActionPerformed
-
+    
+    
     private void playBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playBtnActionPerformed
         // TODO add your handling code here:
         goTo.accept("Calendar");

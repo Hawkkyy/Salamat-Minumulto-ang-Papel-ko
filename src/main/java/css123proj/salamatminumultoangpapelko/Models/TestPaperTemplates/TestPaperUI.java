@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.event.*;
 
 public class TestPaperUI extends JPanel implements SwitchToolListener{
 
@@ -23,6 +24,43 @@ public class TestPaperUI extends JPanel implements SwitchToolListener{
     private JPanel questArea, top;
     private final List<QuestionUI> rows = new ArrayList<>();
     int level = 1,set;
+    private int totalScore = 0;
+    private static final int PAPERS_PER_LEVEL = 5;
+    private int papersDone = 0;
+    private int maxScore = 0;
+    private java.util.function.BiConsumer<Integer, Boolean> onFinished;   // (totalScore, levelOver)
+    
+    private boolean paperActive = true;
+    
+    public void setOnFinished(java.util.function.BiConsumer<Integer, Boolean> c) { onFinished = c; }
+    public int getMaxScore() { return maxScore; }
+    public int getTotalScore() { return totalScore; }
+
+public void reset() {
+    totalScore = 0;
+    maxScore = 0;
+    papersDone = 0;
+    paperActive = true;
+    setVisible(true);
+    loadPaper();
+}
+
+    public int getPapersPerLevel() { return PAPERS_PER_LEVEL; }
+
+/** Papers still sitting in the stack (the one on the desk is not counted). */
+public int getPapersLeftInStack() {
+    int taken = papersDone + (paperActive ? 1 : 0);
+    return PAPERS_PER_LEVEL - taken;
+}
+
+/** Takes the next paper from the stack. Returns false if one is already on the desk or the stack is empty. */
+public boolean nextPaper() {
+    if (paperActive || papersDone >= PAPERS_PER_LEVEL) return false;
+    loadPaper();
+    paperActive = true;
+    setVisible(true);
+    return true;
+}
     
     public TestPaperUI(int level) {
         
@@ -67,20 +105,33 @@ public class TestPaperUI extends JPanel implements SwitchToolListener{
         questHolder.add(scroll, BorderLayout.CENTER);
         
         
-        set = new java.util.Random().nextInt(level == 1 ? 1 : 2) + 1;   // 1 = A, 2 = B
-        headerLbl.setText("SET " + (char) ('A' + set - 1));
-        List<QuestionData> list = TestPaperData.generateQuestions(level, set);
-        
-        for (int i = 0; i < list.size(); i++) {
-            QuestionUI row = new QuestionUI(i + 1, list.get(i));
-            row.setOnChange(this::updateFinishButton);
-            rows.add(row);
-            questArea.add(row);
-        }
-    
-    finishBtn.setVisible(false);   // hidden until every row has a ✔ or ✘
-            
+        loadPaper();
+
+        finishBtn.addActionListener(e -> {
+        int score = 0;
+    for (QuestionUI row : rows) {
+        boolean playerSaysCorrect = row.getMark() == QuestionUI.Mark.CHECK;
+        score += (playerSaysCorrect == row.isStudentCorrect()) ? 1 : -1;
     }
+    totalScore += score;
+    maxScore += rows.size();
+    papersDone++;
+    finishBtn.setSelected(false);
+
+    boolean levelOver = papersDone >= PAPERS_PER_LEVEL;
+    if (!levelOver) {
+        paperActive = false;   // paper leaves the desk until the player clicks the stack
+        setVisible(false);
+    }
+    if (onFinished != null) onFinished.accept(totalScore, levelOver);
+});
+            
+        
+        
+        
+        
+}        
+    
 
 
     private static class ScrollPanel extends JPanel implements Scrollable {
@@ -120,6 +171,38 @@ public class TestPaperUI extends JPanel implements SwitchToolListener{
     top.revalidate();
     top.repaint();
     }
+    
+    public void loadPaper() {
+    questArea.removeAll();
+    rows.clear();
+
+    set = new java.util.Random().nextInt(level == 1 ? 1 : 2) + 1;   // 1 = A, 2 = B
+    headerLbl.setText("SET " + (char) ('A' + set - 1));
+
+    List<QuestionData> list = TestPaperData.generateQuestions(level, set);
+    for (int i = 0; i < list.size(); i++) {
+        QuestionUI row = new QuestionUI(i + 1, list.get(i));
+        row.setOnChange(this::updateFinishButton);
+        rows.add(row);
+        questArea.add(row);
+    }
+
+    finishBtn.setVisible(false);
+    questArea.revalidate();
+    questArea.repaint();
+    top.revalidate();
+    }
+    
+    public List<String> getAnswerKey() {
+        List<String> key = new ArrayList<>();
+        for (int i = 0; i < rows.size(); i++) {
+            key.add((i + 1) + ". " + rows.get(i).getCorrectLetter());
+        }
+        return key;
+    }
+    
+    public int getSet() { return set; }
+
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

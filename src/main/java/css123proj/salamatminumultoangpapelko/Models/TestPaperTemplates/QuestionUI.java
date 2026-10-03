@@ -18,7 +18,10 @@ public class QuestionUI extends javax.swing.JPanel {
     
     public enum Mark { NONE, CHECK, X, TAPE }
     public enum Tool { NONE, PEN, TAPE }
-
+    
+    private String studentChoice;      // "A.", "B.", "C." or "D."
+    private boolean studentCorrect;    // was the student actually right?
+    
     public static Tool currentTool = Tool.NONE;
 
     private Mark mark = Mark.NONE;
@@ -26,11 +29,32 @@ public class QuestionUI extends javax.swing.JPanel {
     public void setOnChange(Runnable r) { onChange = r; }
     private final JLabel markLbl = new JLabel("", SwingConstants.CENTER);
     private QuestionData data;
+    private JTextArea questText;
+    private JPanel choices;
+    private int lastWidth = 0;
     
+    private static final Font HAND_FONT = new Font("Serif", Font.ITALIC, 26);
+    private final JLabel studentLbl = new JLabel("", SwingConstants.CENTER);        
+
     
-public QuestionUI(int num, QuestionData q) {
+    public QuestionUI(int num, QuestionData q) {
     
         this.data = q;
+        
+        java.util.List<String> letters = new java.util.ArrayList<>(java.util.Arrays.asList("A.", "B."));
+            if (q.c != null) letters.add("C.");
+            if (q.d != null) letters.add("D.");
+
+        String correct = q.answer.endsWith(".") ? q.answer : q.answer + ".";   // fixes the "C" typo in the JSON
+        java.util.Random rnd = new java.util.Random();
+
+        if (rnd.nextInt(100) < 70) {
+            studentChoice = correct;                       // 70%: student is right
+        } else {
+            letters.remove(correct);
+            studentChoice = letters.get(rnd.nextInt(letters.size()));   // 30%: student picks a wrong one
+        }
+        studentCorrect = studentChoice.equals(correct);
 
         Font qFont = new Font("Serif", Font.PLAIN, 16);
         Font cFont = new Font("Serif", Font.BOLD, 15);
@@ -38,7 +62,7 @@ public QuestionUI(int num, QuestionData q) {
         setLayout(new BorderLayout(10, 0));
         setOpaque(false);
 
-        JTextArea questText = new JTextArea(num + ". " + q.question);
+        questText = new JTextArea(num + ". " + q.question);
         questText.setLineWrap(true);
         questText.setWrapStyleWord(true);
         questText.setEditable(false);
@@ -47,7 +71,7 @@ public QuestionUI(int num, QuestionData q) {
         questText.setBorder(null);
         questText.setFont(qFont);
 
-        JPanel choices = new JPanel();
+        choices = new JPanel();
         choices.setOpaque(false);
         choices.setLayout(new BoxLayout(choices, BoxLayout.Y_AXIS));
         choices.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));
@@ -59,13 +83,30 @@ public QuestionUI(int num, QuestionData q) {
         JPanel center = new JPanel(new BorderLayout());
         center.setOpaque(false);
         center.add(questText, BorderLayout.NORTH);
-        center.add(choices, BorderLayout.CENTER);
 
         markLbl.setPreferredSize(new Dimension(40, 40));
         markLbl.setFont(new Font("Dialog", Font.BOLD, 28));
 
         add(center, BorderLayout.CENTER);
         add(markLbl, BorderLayout.EAST);
+        
+        JPanel choiceRow = new JPanel(new BorderLayout());
+        choiceRow.setOpaque(false);
+        choiceRow.add(choices, BorderLayout.WEST);
+
+        studentLbl.setHorizontalAlignment(SwingConstants.LEFT);
+        studentLbl.setBorder(BorderFactory.createEmptyBorder(0, 40, 0, 0));   // distance from the choices
+        choiceRow.add(studentLbl, BorderLayout.CENTER);
+
+        center.add(choiceRow, BorderLayout.CENTER);
+        
+        studentLbl.setText(studentChoice.replace(".", ""));   // "B." becomes "B"
+        studentLbl.setFont(HAND_FONT);
+        studentLbl.setForeground(new Color(20, 40, 140));     // pen-ink blue
+        studentLbl.setVerticalAlignment(SwingConstants.TOP);
+
+        
+        
         setBorder(BorderFactory.createEmptyBorder(6, 6, 6, 6));
 
         // child components swallow clicks, so the listener goes on every part
@@ -75,6 +116,19 @@ public QuestionUI(int num, QuestionData q) {
                 onClick();
             }
         });
+        
+        
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            @Override
+            public void componentResized(java.awt.event.ComponentEvent e) {
+                if (getWidth() != lastWidth) {   // only re-measure when the width changes
+                lastWidth = getWidth();
+                revalidate();
+                }
+            }
+        });
+        
+        
     }
 
     private void onClick() {
@@ -120,6 +174,10 @@ public QuestionUI(int num, QuestionData q) {
 
     if (onChange != null) onChange.run();
 }
+    
+    private String mark(String letter) {
+    return letter.equals(studentChoice) ? "\u25CF " : "   ";   // ● next to the student's pick
+    }
 
     public Mark getMark()         { return mark; }
     public boolean isChecked() { return mark == Mark.CHECK || mark == Mark.X; }
@@ -130,6 +188,8 @@ public QuestionUI(int num, QuestionData q) {
         l.setFont(f);
         return l;
     }
+    
+    public boolean isStudentCorrect() { return studentCorrect; }
 
     private void addClickListener(Component c, MouseAdapter l) {
         c.addMouseListener(l);
@@ -145,7 +205,32 @@ public QuestionUI(int num, QuestionData q) {
         return new Dimension(Integer.MAX_VALUE, getPreferredSize().height);
     }
     
+    @Override
+    public Dimension getPreferredSize() {
+        Dimension d = super.getPreferredSize();
+        if (getWidth() > 0 && questText != null) {
+           int textWidth = getWidth() - 40 - 10 - 12; 
+            questText.setSize(textWidth, Short.MAX_VALUE);
+            int textHeight = questText.getPreferredSize().height;
+            d.height = textHeight + Math.max(choices.getPreferredSize().height, 40) + 12;
+        }
+        return d;
+    }
     
+    public String getCorrectLetter() {
+        String a = data.answer;
+        return (a.endsWith(".") ? a : a + ".").replace(".", "");   // "C" typo in the JSON is handled
+    }
+    
+   // private static final Font HAND_FONT = loadHandFont();
+
+private static Font loadHandFont() {
+    try (java.io.InputStream in = QuestionUI.class.getResourceAsStream("/YourFont.ttf")) {
+        return Font.createFont(Font.TRUETYPE_FONT, in).deriveFont(26f);
+    } catch (Exception e) {
+        return new Font("Serif", Font.ITALIC, 26);   // fallback if the file is missing
+    }
+}
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

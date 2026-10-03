@@ -24,6 +24,11 @@ public class Credits extends javax.swing.JPanel {
         this.goTo = goTo;
         
         initComponents();
+        
+        setLayout(new java.awt.FlowLayout());
+javax.swing.JButton back = new javax.swing.JButton("Back to Title Screen");
+back.addActionListener(e -> goTo.accept("Title Screen"));
+add(back);
     }
 
     /**

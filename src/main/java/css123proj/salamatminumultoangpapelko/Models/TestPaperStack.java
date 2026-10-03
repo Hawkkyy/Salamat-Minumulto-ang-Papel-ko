@@ -17,6 +17,8 @@ public class TestPaperStack extends javax.swing.JPanel {
 
     
     private Image paperStackImg;
+    private int remaining = 5;
+    private int total = 5;
     
     public TestPaperStack() {
         
@@ -32,13 +34,31 @@ public class TestPaperStack extends javax.swing.JPanel {
     }
 
     
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        if (paperStackImg != null) {
-            g.drawImage(paperStackImg, 0, 0, getWidth(), getHeight(), this);
-        }
+   
+
+public void setCount(int remaining, int total) {
+    this.remaining = remaining;
+    this.total = total;
+    repaint();
+}
+
+@Override
+protected void paintComponent(Graphics g) {
+    super.paintComponent(g);
+    if (paperStackImg != null && remaining > 0) {
+        int h = getHeight();
+        double frac = 0.25 + 0.75 * remaining / (double) total;   // never fully flat while papers remain
+        int visH = (int) (h * frac);
+        int imgH = paperStackImg.getHeight(null);
+        int srcTop = imgH - (int) (imgH * frac);
+        // draw only the bottom part of the image so the pile gets shorter
+        g.drawImage(paperStackImg, 0, h - visH, getWidth(), h,
+                0, srcTop, paperStackImg.getWidth(null), imgH, this);
     }
+    g.setColor(java.awt.Color.WHITE);
+    g.setFont(new java.awt.Font("SansSerif", java.awt.Font.BOLD, 18));
+    g.drawString(remaining + " left", 10, 24);
+}
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

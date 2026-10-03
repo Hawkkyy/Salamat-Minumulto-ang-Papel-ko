@@ -6,7 +6,11 @@ package css123proj.salamatminumultoangpapelko.Models;
 
 import css123proj.salamatminumultoangpapelko.Panels.Levels.CustomEvents.SwitchTool;
 import css123proj.salamatminumultoangpapelko.Panels.Levels.CustomEvents.SwitchToolListener;
+import java.awt.AlphaComposite;
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -26,7 +30,9 @@ public class CorrectionTape extends javax.swing.JPanel {
     private List<SwitchToolListener> listeners = new ArrayList<>();
     private SwitchToolListener switchToolListen;
     
-    
+    private boolean held = false;
+
+
     public CorrectionTape() {
     try {
             corTapeImg = ImageIO.read(getClass().getResource("/Art/Models/CorrectionTape/CorrectionTapeImg.png"));
@@ -75,13 +81,32 @@ public class CorrectionTape extends javax.swing.JPanel {
     }
     
     
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        if (corTapeImg != null) {
-            g.drawImage(corTapeImg, 0, 0, getWidth(), getHeight(), this);
-        }
+    
+    
+    public void setHeld(boolean held) {
+    this.held = held;
+    repaint();
+}
+
+public Image getImage() { return corTapeImg; }
+
+@Override
+protected void paintComponent(Graphics g) {
+    super.paintComponent(g);
+    Graphics2D g2 = (Graphics2D) g.create();
+    if (corTapeImg != null) {
+        if (held) g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
+        g2.drawImage(corTapeImg, 0, 0, getWidth(), getHeight(), this);
     }
+    if (held) {
+        g2.setComposite(AlphaComposite.SrcOver);
+        g2.setColor(new Color(255, 255, 255, 200));
+        g2.setStroke(new BasicStroke(2f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER,
+                10f, new float[]{8f, 6f}, 0f));
+        g2.drawRect(2, 2, getWidth() - 5, getHeight() - 5);
+    }
+    g2.dispose();
+}
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
