@@ -48,8 +48,17 @@ public class GameFrame extends javax.swing.JFrame {
         screenBox.add(loadPanel, "Loading");
         
         setContentPane(screenBox);
-        
+        playForScreen("Opening Cutscene");
         showPanel.show(screenBox, "Opening Cutscene");
+       
+        Toolkit.getDefaultToolkit().addAWTEventListener(ev -> {
+    if (ev instanceof java.awt.event.MouseEvent me
+            && me.getID() == java.awt.event.MouseEvent.MOUSE_PRESSED
+            && me.getSource() instanceof AbstractButton) {
+        AudioSettings.playSfx("/SFX/click.wav");
+    }
+}, AWTEvent.MOUSE_EVENT_MASK);
+        
         
         setExtendedState(Frame.MAXIMIZED_BOTH);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -80,12 +89,58 @@ public class GameFrame extends javax.swing.JFrame {
     public void showCard(String cardName) {
         
         System.out.println("Going to "+cardName);
+        playForScreen(cardName);
         showPanel.show(screenBox, cardName);
         screenBox.revalidate();
         screenBox.repaint();
         
     }
     
+    private void playForScreen(String card) {
+    switch (card) {
+        case "Opening Cutscene":
+            AudioSettings.stopMusic();
+            AudioSettings.playMusic("/Music/OpeningCutsceneMusic.wav");
+        case "Ending Cutscene":
+            AudioSettings.stopMusic();
+            AudioSettings.playMusic("/Music/OpeningCutsceneMusic.wav");
+            break;
+        case "Title Screen":
+            
+            AudioSettings.stopMusic();
+            AudioSettings.playMusic("/Music/TitleScreenMusic.wav");
+        case "Settings":
+        case "Calendar":
+        case "Credits":
+            
+            AudioSettings.stopMusic();
+            AudioSettings.playMusic("/Music/OpeningCutsceneMusic.wav");
+            break;
+        case "Level 1":
+            
+            AudioSettings.stopMusic();
+            AudioSettings.playMusic("/Music/LevelMusic.wav");
+        case "Level 2":
+            
+            AudioSettings.stopMusic();
+            AudioSettings.playMusic("/Music/LevelMusic.wav");
+        case "Level 3":
+            
+            AudioSettings.stopMusic();
+            AudioSettings.playMusic("/Music/LevelMusic.wav");
+            break;
+        case "Game Won":
+            AudioSettings.stopMusic();
+            AudioSettings.playSfx("/Music/GameWon.wav");
+            break;
+        case "Game Over":
+            AudioSettings.stopMusic();
+            AudioSettings.playSfx("/Music/GameOverMusic.wav");
+            break;
+        default:
+            break;   // Score, Loading: keep whatever is playing
+    }
+}
     
     public static void main(String args[]) {
         

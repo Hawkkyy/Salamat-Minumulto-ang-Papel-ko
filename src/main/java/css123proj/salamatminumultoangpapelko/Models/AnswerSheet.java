@@ -33,6 +33,9 @@ public class AnswerSheet extends JPanel {
         add(titleLbl, BorderLayout.NORTH);
         add(list, BorderLayout.CENTER);
         
+        titleLbl.setVisible(false);
+list.setVisible(false);
+        
         try {
     paperImg = ImageIO.read(getClass().getResource("/Art/Models/TestPaper/TestPaperImg.png"));
 } catch (IOException | IllegalArgumentException e) {
@@ -45,8 +48,10 @@ public class AnswerSheet extends JPanel {
     return new Font("Serif", Font.PLAIN, expanded ? 30 : 20);
 }
 
-public void setExpanded(boolean expanded) {
+    public void setExpanded(boolean expanded) {
     this.expanded = expanded;
+    titleLbl.setVisible(expanded);     // text only shows when the sheet is open
+    list.setVisible(expanded);
     titleLbl.setFont(new Font("Serif", Font.BOLD, expanded ? 34 : 22));
     for (Component c : list.getComponents()) c.setFont(lineFont());
     setBorder(BorderFactory.createEmptyBorder(expanded ? 100 : 60, 40, 40, 40));

@@ -4,6 +4,10 @@
  */
 package css123proj.salamatminumultoangpapelko.Panels;
 
+import css123proj.salamatminumultoangpapelko.Panels.AudioSettings;
+import java.awt.event.HierarchyEvent;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.function.Consumer;
@@ -18,10 +22,32 @@ public class Settings extends javax.swing.JPanel {
         private Consumer<String> goTo;
         
     public Settings(Consumer<String> goTo) {
-        
-        this.goTo = goTo;
-        initComponents();
-    }
+
+    this.goTo = goTo;
+    initComponents();
+
+    jButton1.addActionListener(e -> saveSettings());          // "Save"
+
+    // every time the screen is shown, show the saved values (so unsaved changes are discarded)
+    addHierarchyListener(e -> {
+        if ((e.getChangeFlags() & HierarchyEvent.SHOWING_CHANGED) != 0 && isShowing()) {
+            syncFromSaved();
+        }
+    });
+    syncFromSaved();
+}
+    
+    
+    private void syncFromSaved() {
+    jCheckBox1.setSelected(AudioSettings.isMusicOn());   // Music
+    jCheckBox2.setSelected(AudioSettings.isSfxOn());     // SFX
+}
+
+private void saveSettings() {
+    AudioSettings.setMusicOn(jCheckBox1.isSelected());
+    AudioSettings.setSfxOn(jCheckBox2.isSelected());
+    JOptionPane.showMessageDialog(this, "Settings saved.");
+}
 
     /**
      * This method is called from within the constructor to initialize the form.

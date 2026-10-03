@@ -2,6 +2,7 @@
 package css123proj.salamatminumultoangpapelko.Models.TestPaperTemplates;
 
 import css123proj.salamatminumultoangpapelko.Models.TestPaperTemplates.TestPaperData.QuestionData;
+import css123proj.salamatminumultoangpapelko.Panels.AudioSettings;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -34,6 +35,10 @@ public class QuestionUI extends javax.swing.JPanel {
     private int lastWidth = 0;
     
     private static final Font HAND_FONT = new Font("Serif", Font.ITALIC, 26);
+    
+    private static final int PREMARK_CORRECT = 40;   // % of items already graded correctly
+    private static final int PREMARK_WRONG   = 30;   // % of items already graded wrongly (rest are blank)
+    
     private final JLabel studentLbl = new JLabel("", SwingConstants.CENTER);        
 
     
@@ -111,11 +116,11 @@ public class QuestionUI extends javax.swing.JPanel {
 
         // child components swallow clicks, so the listener goes on every part
         addClickListener(this, new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                onClick();
-            }
-        });
+    @Override
+    public void mousePressed(MouseEvent e) {
+        onClick(e);
+    }
+});
         
         
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -128,18 +133,30 @@ public class QuestionUI extends javax.swing.JPanel {
             }
         });
         
+        int roll = rnd.nextInt(100);
+if (roll < PREMARK_CORRECT) {
+    setMark(studentCorrect ? Mark.CHECK : Mark.X);          // the "teacher" graded it right
+} else if (roll < PREMARK_CORRECT + PREMARK_WRONG) {
+    setMark(studentCorrect ? Mark.X : Mark.CHECK);          // the "teacher" made a mistake
+}                                                           // otherwise left blank
         
     }
 
-    private void onClick() {
+    private void onClick(MouseEvent e) {
+    boolean left  = SwingUtilities.isLeftMouseButton(e);
+    boolean right = SwingUtilities.isRightMouseButton(e);
+
     switch (currentTool) {
         case PEN:
-            // pen writes over anything, including tape
-            setMark(mark == Mark.CHECK ? Mark.X : Mark.CHECK);
+            // the pen can only write on a blank or taped spot
+            if (mark == Mark.NONE || mark == Mark.TAPE) {
+                if (left){       setMark(Mark.CHECK);  AudioSettings.playSfx("/SFX/pen.wav"); }// left click = correct
+                else if (right) setMark(Mark.X);  AudioSettings.playSfx("/SFX/tape.wav");     // right click = wrong
+            }
             break;
         case TAPE:
-            // tape only covers an existing mark
-            if (mark == Mark.CHECK || mark == Mark.X) {
+            // the tape only covers an existing mark, left click only
+            if (left && (mark == Mark.CHECK || mark == Mark.X)) {
                 setMark(Mark.TAPE);
             }
             break;

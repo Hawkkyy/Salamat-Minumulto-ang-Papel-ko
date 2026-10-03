@@ -187,7 +187,7 @@ public boolean nextPaper() {
         questArea.add(row);
     }
 
-    finishBtn.setVisible(false);
+    updateFinishButton();
     questArea.revalidate();
     questArea.repaint();
     top.revalidate();

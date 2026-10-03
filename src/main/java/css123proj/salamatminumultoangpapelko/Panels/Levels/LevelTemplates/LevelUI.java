@@ -4,6 +4,7 @@ import css123proj.salamatminumultoangpapelko.Models.*;
 import css123proj.salamatminumultoangpapelko.Panels.Levels.Instructions;
 import css123proj.salamatminumultoangpapelko.Models.Menu.MenuButton;
 import css123proj.salamatminumultoangpapelko.Models.TestPaperTemplates.*;
+import css123proj.salamatminumultoangpapelko.Panels.AudioSettings;
 import css123proj.salamatminumultoangpapelko.Panels.Levels.CustomEvents.SwitchTool;
 import css123proj.salamatminumultoangpapelko.Panels.Levels.CustomEvents.SwitchToolListener;
 import java.awt.*;
@@ -161,6 +162,7 @@ ansKey.addMouseListener(new MouseAdapter() {   // click the small sheet on the l
         if (testPaper.nextPaper()) {          // does nothing while a paper is still on the desk
             ansKey.setKey(testPaper.getSet(), testPaper.getAnswerKey());
             updateStack();
+            AudioSettings.playSfx("/SFX/paper.wav");
         }
     }
 });
@@ -284,6 +286,7 @@ public void onToolSelected(SwitchTool evt) {
 }
 
 private void setHeldTool(QuestionUI.Tool tool) {
+    AudioSettings.playSfx(tool == QuestionUI.Tool.NONE ? "/SFX/putdown.wav" : "/SFX/pickup.wav");
     QuestionUI.currentTool = tool;
     ballpen.setHeld(tool == QuestionUI.Tool.PEN);
     corTape.setHeld(tool == QuestionUI.Tool.TAPE);
