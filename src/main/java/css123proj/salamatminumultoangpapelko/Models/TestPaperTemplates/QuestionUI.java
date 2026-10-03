@@ -150,14 +150,16 @@ if (roll < PREMARK_CORRECT) {
         case PEN:
             // the pen can only write on a blank or taped spot
             if (mark == Mark.NONE || mark == Mark.TAPE) {
-                if (left){       setMark(Mark.CHECK);  AudioSettings.playSfx("/SFX/pen.wav"); }// left click = correct
-                else if (right) setMark(Mark.X);  AudioSettings.playSfx("/SFX/tape.wav");     // right click = wrong
+                if (left)       { setMark(Mark.CHECK); AudioSettings.playSfx("/SFX/pen.wav"); }
+                else if (right) { setMark(Mark.X);     AudioSettings.playSfx("/SFX/pen.wav"); }   // right click = wrong
             }
             break;
         case TAPE:
             // the tape only covers an existing mark, left click only
             if (left && (mark == Mark.CHECK || mark == Mark.X)) {
                 setMark(Mark.TAPE);
+                AudioSettings.playSfx("/SFX/tape.wav");    // right click = wrong
+            
             }
             break;
         default:

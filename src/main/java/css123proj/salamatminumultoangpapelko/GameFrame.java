@@ -96,50 +96,33 @@ public class GameFrame extends javax.swing.JFrame {
         
     }
     
-    private void playForScreen(String card) {
+   private void playForScreen(String card) {
     switch (card) {
         case "Opening Cutscene":
-            AudioSettings.stopMusic();
-            AudioSettings.playMusic("/Music/OpeningCutsceneMusic.wav");
         case "Ending Cutscene":
-            AudioSettings.stopMusic();
-            AudioSettings.playMusic("/Music/OpeningCutsceneMusic.wav");
+            AudioSettings.playMusic("/Music/BGM/OpeningCutsceneMusic.wav");
             break;
         case "Title Screen":
-            
-            AudioSettings.stopMusic();
-            AudioSettings.playMusic("/Music/TitleScreenMusic.wav");
         case "Settings":
         case "Calendar":
         case "Credits":
-            
-            AudioSettings.stopMusic();
-            AudioSettings.playMusic("/Music/OpeningCutsceneMusic.wav");
+            AudioSettings.playMusic("/Music/BGM/TitleScreenMusic.wav");
             break;
         case "Level 1":
-            
-            AudioSettings.stopMusic();
-            AudioSettings.playMusic("/Music/LevelMusic.wav");
         case "Level 2":
-            
-            AudioSettings.stopMusic();
-            AudioSettings.playMusic("/Music/LevelMusic.wav");
         case "Level 3":
-            
-            AudioSettings.stopMusic();
-            AudioSettings.playMusic("/Music/LevelMusic.wav");
+            AudioSettings.playMusic("/Music/BGM/LevelMusic.wav");
             break;
         case "Game Won":
-            AudioSettings.stopMusic();
-            AudioSettings.playSfx("/Music/GameWon.wav");
+            AudioSettings.playMusic("/Music/BGM/GameWon.wav");      // plays once
             break;
         case "Game Over":
-            AudioSettings.stopMusic();
-            AudioSettings.playSfx("/Music/GameOverMusic.wav");
+            AudioSettings.playMusic("/Music/BGM/GameOverMusic.wav");
             break;
         default:
             break;   // Score, Loading: keep whatever is playing
     }
+
 }
     
     public static void main(String args[]) {
