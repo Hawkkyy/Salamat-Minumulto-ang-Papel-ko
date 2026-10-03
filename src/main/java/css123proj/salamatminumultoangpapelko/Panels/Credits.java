@@ -14,36 +14,32 @@ public class Credits extends javax.swing.JPanel {
 
         initComponents();
 
-        // Match Settings dark purple background
         setBackground(new Color(27, 25, 51));
         setLayout(new GridBagLayout());
 
-        // Central vertical container matching Settings alignment
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
         centerPanel.setOpaque(false);
 
-        // Title
         JLabel titleLbl = new JLabel("Credits");
-        titleLbl.setFont(new Font("SansSerif", Font.BOLD, 48));
+        titleLbl.setFont(new Font("SansSerif", Font.BOLD, 60));
         titleLbl.setForeground(Color.WHITE);
         titleLbl.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        // Section: Project Team
         JLabel teamHeader = new JLabel("PROJECT TEAM");
-        teamHeader.setFont(new Font("SansSerif", Font.BOLD, 22));
+        teamHeader.setFont(new Font("SansSerif", Font.BOLD, 35));
         teamHeader.setForeground(new Color(160, 195, 255));
         teamHeader.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JLabel member1 = new JLabel("Bea Athena Salazar");
-        JLabel role1 = new JLabel("Project Manager & Lead Developer");
+        JLabel role1 = new JLabel("Project Manager & Lead Artist");
         JLabel member2 = new JLabel("Vincent Roui Teves");
-        JLabel role2 = new JLabel("Game Mechanic & Logic Developer");
+        JLabel role2 = new JLabel("Game Mechanic & Lead Developer");
         JLabel member3 = new JLabel("Mariele C. Veterbo");
         JLabel role3 = new JLabel("Concept Artist & Developer");
 
-        Font nameFont = new Font("SansSerif", Font.BOLD, 18);
-        Font roleFont = new Font("SansSerif", Font.PLAIN, 14);
+        Font nameFont = new Font("SansSerif", Font.BOLD, 22);
+        Font roleFont = new Font("SansSerif", Font.PLAIN, 18);
 
         member1.setFont(nameFont); member1.setForeground(Color.WHITE); member1.setAlignmentX(Component.CENTER_ALIGNMENT);
         role1.setFont(roleFont); role1.setForeground(new Color(190, 195, 210)); role1.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -54,9 +50,8 @@ public class Credits extends javax.swing.JPanel {
         member3.setFont(nameFont); member3.setForeground(Color.WHITE); member3.setAlignmentX(Component.CENTER_ALIGNMENT);
         role3.setFont(roleFont); role3.setForeground(new Color(190, 195, 210)); role3.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        // Section: Acknowledgments
         JLabel ackHeader = new JLabel("SPECIAL THANKS");
-        ackHeader.setFont(new Font("SansSerif", Font.BOLD, 22));
+        ackHeader.setFont(new Font("SansSerif", Font.BOLD, 30));
         ackHeader.setForeground(new Color(160, 195, 255));
         ackHeader.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -71,15 +66,13 @@ public class Credits extends javax.swing.JPanel {
         ackText2.setForeground(new Color(210, 215, 230));
         ackText2.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        // Return Button
         JButton backBtn = new JButton("Return to Title");
-        backBtn.setFont(new Font("SansSerif", Font.BOLD, 16));
+        backBtn.setFont(new Font("SansSerif", Font.BOLD, 20));
         backBtn.setPreferredSize(new Dimension(220, 45));
         backBtn.setMaximumSize(new Dimension(220, 45));
         backBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
         backBtn.addActionListener(e -> goTo.accept("Title Screen"));
 
-        // Assemble central panel
         centerPanel.add(titleLbl);
         centerPanel.add(Box.createVerticalStrut(35));
 
